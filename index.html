@@ -290,6 +290,73 @@
     }
     @media (max-width:400px){ #toast{white-space:normal} }
     #toast.show{opacity:1;transform:translate(-50%,0)}
+    /* ===== شريط مفتوح الآن ===== */
+    .status-strip{max-width:640px;margin:10px auto 0;padding:0 12px;display:flex;gap:8px;flex-wrap:wrap}
+    .status-strip span{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;border-radius:999px;padding:6px 12px}
+    .st-open{background:#e9f9ee;color:#15803d;border:1px solid #bbf0cf;font-weight:700}
+    .st-open .dot{width:9px;height:9px;border-radius:50%;background:#22c55e;display:inline-block;animation:blink 1.4s infinite}
+    @keyframes blink{50%{opacity:.35}}
+    .st-prep{background:#fff;color:#57534e;border:1px solid #eadfcd}
+
+    /* ===== البحث ===== */
+    .search-wrap{max-width:640px;margin:10px auto 0;padding:0 12px}
+    #menuSearch{width:100%;box-sizing:border-box;border:1.5px solid #e7dcc9;background:#fff;border-radius:999px;padding:11px 18px;font-family:inherit;font-size:.9rem;outline:none}
+    #menuSearch:focus{border-color:var(--primary)}
+    .no-results{max-width:640px;margin:14px auto;padding:14px;text-align:center;color:#78716c;background:#fff;border-radius:var(--radius);border:1px dashed #d6cbb6}
+
+    /* ===== بانر العروض ===== */
+    .promo-banner{max-width:640px;margin:12px auto 0;padding:0 12px}
+    .pb-viewport{overflow:hidden;border-radius:var(--radius);box-shadow:0 6px 18px rgba(0,0,0,.14)}
+    .pb-track{display:flex;direction:ltr;transition:transform .4s ease}
+    .pb-slide{position:relative;min-width:100%;height:150px;overflow:hidden;direction:rtl;color:#fff}
+    .pb-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .pb-s1::after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,rgba(20,10,8,.85),rgba(20,10,8,.35) 55%,rgba(20,10,8,.08))}
+    .pb-s2{background:linear-gradient(135deg,#7c2d12,#b91c1c 55%,#f59e0b)}
+    .pb-s3{background:linear-gradient(135deg,#052e16,#065f46 60%,#10b981)}
+    .pb-copy{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:6px;padding:0 18px;text-align:right;box-sizing:border-box}
+    .pb-copy b{font-size:1.12rem}
+    .pb-copy span{font-size:.8rem;opacity:.96;max-width:88%}
+    .pb-btn{background:#fbbf24;color:#422006;border:none;border-radius:999px;padding:7px 18px;font-family:inherit;font-weight:800;font-size:.8rem;text-decoration:none;cursor:pointer}
+    .pb-dots{display:flex;gap:6px;justify-content:center;margin-top:8px}
+    .pb-dot{width:22px;height:5px;border-radius:99px;border:none;background:#d6cbb6;cursor:pointer}
+    .pb-dot.on{background:var(--primary)}
+
+    /* ===== التنقل السفلي ===== */
+    body{padding-bottom:84px}
+    .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:58;background:#fff;border-top:1px solid #e7dcc9;display:flex;box-shadow:0 -4px 16px rgba(0,0,0,.08);padding-bottom:env(safe-area-inset-bottom,0)}
+    .bottom-nav button{flex:1;background:none;border:none;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px 8px;color:#78716c;font-size:.66rem;cursor:pointer}
+    .bottom-nav button:active{color:var(--primary)}
+    .bn-ico{font-size:1.25rem;position:relative;line-height:1}
+    .bn-badge{position:absolute;top:-4px;right:-12px;min-width:18px;height:18px;border-radius:99px;background:var(--primary);color:#fff;font-size:.62rem;display:flex;align-items:center;justify-content:center;padding:0 4px}
+
+    /* ===== الصناديق المصغرة ===== */
+    .mini-sheet{position:fixed;bottom:0;left:0;right:0;max-height:76vh;overflow-y:auto;z-index:57;background:#fff;border-radius:22px 22px 0 0;padding:14px 16px 86px;transform:translateY(105%);transition:transform .3s;box-shadow:0 -8px 30px rgba(0,0,0,.25);box-sizing:border-box}
+    .mini-sheet.show{transform:none}
+    .mini-empty{text-align:center;color:#78716c;padding:26px 10px;font-size:.88rem;line-height:2}
+    .mini-note{font-size:.75rem;color:#78716c;line-height:1.9;background:#fafaf9;border:1px dashed #e7dcc9;border-radius:12px;padding:10px 12px;margin:10px 0 0}
+    .promo-card{background:linear-gradient(135deg,#451a03,#7c2d12);color:#fde68a;border-radius:var(--radius);padding:16px;text-align:center}
+    .promo-card-top{font-weight:800;font-size:.9rem;margin-bottom:10px}
+    .promo-code{display:inline-flex;flex-direction:column;gap:2px;align-items:center;background:transparent;border:2px dashed #f59e0b;border-radius:14px;color:#fef3c7;padding:10px 34px;font-family:inherit;cursor:pointer}
+    .promo-code span{font-size:1.5rem;font-weight:900;letter-spacing:.2em}
+    .promo-code small{font-size:.7rem;color:#fcd34d}
+    .promo-note{font-size:.7rem;color:#fcd34d;opacity:.9;margin:10px 0 0}
+    .prof-label{display:block;font-size:.78rem;color:#57534e;margin:12px 2px 4px}
+    .prof-input{width:100%;box-sizing:border-box;border:1.5px solid #e7dcc9;border-radius:12px;padding:11px 14px;font-family:inherit;font-size:.95rem;outline:none}
+    .prof-input:focus{border-color:var(--primary)}
+    .prof-save{width:100%;margin-top:14px;background:var(--primary);color:#fff;border:none;border-radius:12px;padding:12px;font-family:inherit;font-size:.95rem;font-weight:800;cursor:pointer}
+    .prof-stats{display:flex;gap:10px;margin-top:14px}
+    .prof-stats > div{flex:1;background:#fafaf9;border-radius:14px;padding:12px 8px;text-align:center;border:1px solid #eee5d3}
+    .prof-stats b{display:block;font-size:1.05rem;color:var(--primary-dark)}
+    .prof-stats span{font-size:.68rem;color:#78716c}
+    .prof-clear{display:block;margin:14px auto 0;background:none;border:none;color:#b91c1c;font-family:inherit;font-size:.75rem;text-decoration:underline;cursor:pointer}
+    .order-line{background:#fafaf9;border:1px solid #eee5d3;border-radius:14px;padding:10px 12px;margin-bottom:10px}
+    .ol-head{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:.75rem;color:#57534e;margin-bottom:4px;flex-wrap:wrap}
+    .ol-head b{color:var(--primary-dark);font-size:.85rem}
+    .ol-items{font-size:.85rem;color:#292524;line-height:1.8}
+    .ol-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+    .ol-foot span{font-weight:800;color:#292524}
+    .reorder-btn{background:var(--accent);color:#422006;border:none;border-radius:999px;padding:6px 14px;font-family:inherit;font-size:.75rem;font-weight:800;cursor:pointer}
+
   </style>
 </head>
 <body>
@@ -304,12 +371,59 @@
   <p>📍 التربة — الطريق الدائري · <a href="https://maps.app.goo.gl/sVjpsbmtyN8QHqAA7" style="color:#fde68a">الخرائط</a> · مفتوح ٢٤ ساعة</p>
 </header>
 
+<!-- شريط «مفتوح الآن» -->
+<div class="status-strip" role="status">
+  <span class="st-open"><i class="dot"></i> مفتوح الآن — مفتوح ٢٤ ساعة</span>
+  <span class="st-prep">⏱ مدة التحضير: ٣٠–٤٥ دقيقة</span>
+</div>
+
+<!-- البحث في المنيو -->
+<div class="search-wrap">
+  <input id="menuSearch" type="search" autocomplete="off" placeholder="ابحث في المنيو… (مندي، مشوي، عصير)" aria-label="ابحث في المنيو">
+</div>
+<div id="noResults" class="no-results" hidden>🔍 لا توجد أصناف مطابقة — جرّب كلمة أخرى</div>
+
 <nav id="catNav" aria-label="الأقسام"></nav>
 
 <!-- الأكثر طلباً -->
 <section class="popular" aria-label="الأكثر طلباً">
   <h2>🔥 الأكثر طلباً</h2>
   <div class="pop-row" id="popRow"></div>
+</section>
+
+<!-- بانر العروض -->
+<section class="promo-banner" aria-label="عروض الشيباني">
+  <div class="pb-viewport">
+    <div class="pb-track" id="pbTrack">
+
+      <div class="pb-slide pb-s1">
+        <img class="pb-bg" src="img/dishes/mandi-lamb.jpg" alt="" onerror="this.style.display='none'">
+        <div class="pb-copy">
+          <b>ملك الموائد 👑</b>
+          <span>مندي لحم على طريقتنا الحضرمية — الأكثر طلباً</span>
+          <a class="pb-btn" href="#mandi">اطلب الآن ←</a>
+        </div>
+      </div>
+
+      <div class="pb-slide pb-s2">
+        <div class="pb-copy">
+          <b>خصم ترحيبي 5% 🎁</b>
+          <span>على أول طلب لك بكود <u>SHIBANI5</u></span>
+          <button class="pb-btn" id="pbPromoBtn" type="button">فعّل الخصم الآن</button>
+        </div>
+      </div>
+
+      <div class="pb-slide pb-s3">
+        <div class="pb-copy">
+          <b>📱 حمّل تطبيق الشيباني</b>
+          <span>اطلب بلحظات من شاشتك الرئيسية — أندرويد</span>
+          <a class="pb-btn" href="https://github.com/mmmh77798-sudo/shibani-menu-/releases/download/v1.1.0/shibani-master-menu.apk" target="_blank" rel="noopener">حمّل مجاناً</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="pb-dots" id="pbDots" aria-hidden="true"></div>
 </section>
 
 <main id="menuRoot"></main>
@@ -348,12 +462,16 @@
   <div class="copyright">© 2026 جميع الحقوق محفوظة — <strong>المهندس هيثم عادل</strong> · <a href="tel:777456253" style="color:inherit;text-decoration:none">📞 777456253</a></div>
 </footer>
 
-<button id="cartFab" onclick="openCart()">
-  <span>🛒 السلة<span class="badge" id="cartCount">0</span></span>
-  <span id="cartTotalFab">0 ر.ي</span>
-</button>
+<!-- التنقل السفلي -->
+<nav class="bottom-nav" aria-label="التنقل السريع">
+  <button type="button" id="navMenu"><span class="bn-ico">🍽️</span><span>القائمة</span></button>
+  <button type="button" id="navOrders"><span class="bn-ico">🧾</span><span>طلباتي</span></button>
+  <button type="button" id="navCart"><span class="bn-ico">🛒<b class="bn-badge" id="bnavBadge">0</b></span><span>السلة</span></button>
+  <button type="button" id="navOffers"><span class="bn-ico">🏷️</span><span>العروض</span></button>
+  <button type="button" id="navProfile"><span class="bn-ico">👤</span><span>ملفي</span></button>
+</nav>
 
-<div id="overlay" onclick="closeCart()"></div>
+<div id="overlay" onclick="closeAllSheets()"></div>
 
 <div id="cartSheet" role="dialog" aria-label="سلة الطلب">
   <div class="sheet-head">
@@ -387,6 +505,48 @@
     </button>
     <button class="clear-btn" onclick="clearCart()">إفراغ السلة</button>
   </div>
+</div>
+
+<!-- طلباتي -->
+<div id="ordersSheet" class="mini-sheet" role="dialog" aria-label="طلباتي">
+  <div class="sheet-head">
+    <h3>🧾 طلباتي السابقة</h3>
+    <button class="close-btn" onclick="closeAllSheets()" aria-label="إغلاق">✕</button>
+  </div>
+  <div id="ordersList"></div>
+</div>
+
+<!-- العروض -->
+<div id="offersSheet" class="mini-sheet" role="dialog" aria-label="العروض">
+  <div class="sheet-head">
+    <h3>🏷️ عروض الشيباني</h3>
+    <button class="close-btn" onclick="closeAllSheets()" aria-label="إغلاق">✕</button>
+  </div>
+  <div class="promo-card">
+    <div class="promo-card-top">🎁 كود الترحيب — خصم 5% على طلبك الأول</div>
+    <button class="promo-code" id="copyPromoBtn" type="button"><span dir="ltr">SHIBANI5</span><small>📋 اضغط للنسخ</small></button>
+    <p class="promo-note">يُستخدم في «سلة الطلب» — لأول طلب فقط لكل عميل.</p>
+  </div>
+  <p class="mini-note">🔔 عروض موسمية تُضاف هنا أول بأول — تابعنا في المنيو.</p>
+</div>
+
+<!-- ملفي -->
+<div id="profileSheet" class="mini-sheet" role="dialog" aria-label="ملفي">
+  <div class="sheet-head">
+    <h3>👤 ملفي</h3>
+    <button class="close-btn" onclick="closeAllSheets()" aria-label="إغلاق">✕</button>
+  </div>
+  <p class="mini-note">تُحفظ بياناتك على هذا الجهاز فقط — لا تحتاج حساباً.</p>
+  <label class="prof-label" for="profName">الاسم (يظهر في الطلب)</label>
+  <input id="profName" class="prof-input" type="text" autocomplete="name" placeholder="مثال: أبو فهد">
+  <label class="prof-label" for="profPhone">رقم الجوال (اختياري)</label>
+  <input id="profPhone" class="prof-input" type="tel" dir="ltr" autocomplete="tel" placeholder="7XX XXX XXX">
+  <button class="prof-save" id="profSaveBtn" type="button">💾 حفظ البيانات</button>
+  <div class="prof-stats">
+    <div><b id="profCount">0</b><span>طلباتك المحفوظة</span></div>
+    <div><b id="profSpent">0 ر.ي</b><span>مجموع مشترياتك</span></div>
+  </div>
+  <button class="prof-clear" id="profClearBtn" type="button">مسح بياناتي من هذا الجهاز</button>
 </div>
 
 <div id="toast"></div>
@@ -561,8 +721,7 @@ function clearCart() { cart = {}; promoApplied = false; saveCart(); refreshCartU
 
 function refreshCartUI() {
   const sub = cartSubtotal(), disc = discountAmount(), tot = cartTotal();
-  document.getElementById('cartCount').textContent = cartCount();
-  document.getElementById('cartTotalFab').textContent = fmt(tot);
+  const bn = document.getElementById('bnavBadge'); if (bn) bn.textContent = cartCount();
   document.getElementById('cartSubtotal').textContent = fmt(sub);
   document.getElementById('cartTotal').textContent = fmt(tot);
   document.getElementById('discountRow').hidden = !promoApplied;
@@ -666,6 +825,11 @@ document.getElementById('waBtn').addEventListener('click', () => {
   msg += '\nالإجمالي: ' + fmt(tot);
   msg += '\n\n⏳ التوصيل المتوقع خلال ٢٠–٣٠ دقيقة — شكراً لثقتكم 🙏';
 
+  saveOrder({
+    id: orderNo, t: Date.now(), type: orderType,
+    items: Object.entries(cart).map(([n, q]) => ({ name: n, qty: q, price: ITEM_MAP[n] ? ITEM_MAP[n].price : 0 })),
+    total: tot
+  });
   window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
 });
 
@@ -699,6 +863,120 @@ document.getElementById('reviewSend').addEventListener('click', async () => {
   showToast(comment ? 'شكراً! نُسخ رأيك — الصقه في Google Play 🌟' : 'شكراً! افتحنا لك صفحة التقييم في Google Play 🌟');
   window.open(PLAY_STORE_URL, '_blank', 'noopener');
 });
+
+// ============ ميزات على غرار التطبيقات الاحترافية ============
+function closeAllSheets() {
+  closeCart();
+  document.querySelectorAll('.mini-sheet').forEach(sh => sh.classList.remove('show'));
+  document.getElementById('overlay').classList.remove('show');
+}
+function openSheet(id) {
+  closeAllSheets();
+  document.getElementById(id).classList.add('show');
+  document.getElementById('overlay').classList.add('show');
+}
+
+// ---------- «طلباتي» + أعد الطلب ----------
+function getOrders() { try { return JSON.parse(localStorage.getItem('shibani-orders') || '[]'); } catch (e) { return []; } }
+function saveOrder(o) { localStorage.setItem('shibani-orders', JSON.stringify([o, ...getOrders()].slice(0, 20))); }
+function renderOrders() {
+  const box = document.getElementById('ordersList');
+  const list = getOrders();
+  if (!list.length) { box.innerHTML = '<div class="mini-empty">🧾 لا توجد طلبات محفوظة بعد —<br>أول طلب ترسله عبر واتساب سيظهر هنا</div>'; return; }
+  box.innerHTML = list.map((o, i) => `
+    <div class="order-line">
+      <div class="ol-head"><b>طلب #${o.id}</b><span>${new Date(o.t).toLocaleDateString('ar-YE', { day: 'numeric', month: 'long' })} — ${o.type === 'delivery' ? '🛵 توصيل' : '🍽️ استلام'}</span></div>
+      <div class="ol-items">${o.items.map(it => it.name + ' × ' + it.qty).join('، ')}</div>
+      <div class="ol-foot"><span>${fmt(o.total)}</span><button class="reorder-btn" data-i="${i}" type="button">↻ أعد الطلب</button></div>
+    </div>`).join('');
+}
+document.getElementById('ordersList').addEventListener('click', e => {
+  const b = e.target.closest('.reorder-btn'); if (!b) return;
+  const o = getOrders()[Number(b.dataset.i)]; if (!o) return;
+  o.items.forEach(it => { if (ITEM_MAP[it.name]) cart[it.name] = (cart[it.name] || 0) + it.qty; });
+  saveCart(); refreshCartUI(); closeAllSheets(); openCart();
+  showToast('أُعيدت أصنافك إلى السلة ✅');
+});
+
+// ---------- ملفي ----------
+function getProfile() { try { return JSON.parse(localStorage.getItem('shibani-profile') || '{}'); } catch (e) { return {}; } }
+function renderProfile() {
+  const p = getProfile();
+  document.getElementById('profName').value = p.name || '';
+  document.getElementById('profPhone').value = p.phone || '';
+  const orders = getOrders();
+  document.getElementById('profCount').textContent = orders.length;
+  document.getElementById('profSpent').textContent = fmt(orders.reduce((sum, o) => sum + (o.total || 0), 0));
+}
+document.getElementById('profSaveBtn').addEventListener('click', () => {
+  localStorage.setItem('shibani-profile', JSON.stringify({ name: document.getElementById('profName').value.trim(), phone: document.getElementById('profPhone').value.trim() }));
+  showToast('✅ حُفظت بياناتك على هذا الجهاز');
+  renderProfile();
+});
+document.getElementById('profClearBtn').addEventListener('click', () => {
+  if (!confirm('مسح بياناتك وطلباتك المحفوظة من هذا الجهاز؟')) return;
+  localStorage.removeItem('shibani-profile');
+  localStorage.removeItem('shibani-orders');
+  renderProfile();
+  showToast('تم مسح بياناتك من هذا الجهاز');
+});
+
+// ---------- البحث في المنيو ----------
+const searchInput = document.getElementById('menuSearch');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.trim().toLowerCase();
+  let anyVisible = false;
+  document.querySelectorAll('#menuRoot section').forEach(sec => {
+    let visible = 0;
+    sec.querySelectorAll('.card').forEach(card => {
+      const name = card.querySelector('.name').textContent;
+      const descEl = card.querySelector('.desc');
+      const desc = descEl ? descEl.textContent : '';
+      const match = !q || (name + ' ' + desc).toLowerCase().includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    sec.style.display = visible ? '' : 'none';
+    if (visible) anyVisible = true;
+  });
+  document.getElementById('noResults').hidden = anyVisible || !q;
+});
+
+// ---------- بانر العروض ----------
+const pbTrack = document.getElementById('pbTrack');
+const pbCount = pbTrack.children.length;
+const pbDotsWrap = document.getElementById('pbDots');
+let pbIndex = 0;
+for (let i = 0; i < pbCount; i++) {
+  const d = document.createElement('button');
+  d.className = 'pb-dot' + (i === 0 ? ' on' : '');
+  d.type = 'button';
+  d.setAttribute('aria-label', 'العرض ' + (i + 1));
+  d.addEventListener('click', () => { pbIndex = i; pbGo(); });
+  pbDotsWrap.appendChild(d);
+}
+function pbGo() {
+  pbTrack.style.transform = 'translateX(' + (-pbIndex * 100) + '%)';
+  [...pbDotsWrap.children].forEach((d, i) => d.classList.toggle('on', i === pbIndex));
+}
+setInterval(() => { pbIndex = (pbIndex + 1) % pbCount; pbGo(); }, 5000);
+document.getElementById('pbPromoBtn').addEventListener('click', () => {
+  document.getElementById('promoInput').value = CONFIG.promo.code;
+  document.getElementById('promoApply').click();
+});
+
+// ---------- نسخ كود الخصم ----------
+document.getElementById('copyPromoBtn').addEventListener('click', async () => {
+  try { await navigator.clipboard.writeText(CONFIG.promo.code); showToast('📋 نُسخ الكود — الصقه في السلة'); }
+  catch (e) { showToast('الكود: ' + CONFIG.promo.code); }
+});
+
+// ---------- التنقل السفلي ----------
+document.getElementById('navMenu').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+document.getElementById('navCart').addEventListener('click', () => { closeAllSheets(); openCart(); });
+document.getElementById('navOrders').addEventListener('click', () => { renderOrders(); openSheet('ordersSheet'); });
+document.getElementById('navOffers').addEventListener('click', () => openSheet('offersSheet'));
+document.getElementById('navProfile').addEventListener('click', () => { renderProfile(); openSheet('profileSheet'); });
 
 // ---------- تسجيل عامل الخدمة ----------
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
