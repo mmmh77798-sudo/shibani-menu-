@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="قائمة طعام مطاعم الشيباني ماستر — التربة، تعز — والطلب المباشر عبر واتساب">
+  <meta name="author" content="المهندس هيثم عادل — 777456253">
   <meta name="theme-color" content="#b91c1c">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -105,6 +106,59 @@
 
     footer{text-align:center;font-size:.75rem;color:var(--muted);padding:24px 16px 8px}
 
+    /* ---------- حقوق الملكية ---------- */
+    .copyright{font-size:.72rem;color:var(--muted);margin-top:10px;border-top:1px solid #e7e0d4;padding-top:10px}
+    .android-soon-wrap{max-width:640px;margin:4px auto 0;padding:0 12px}
+    .android-soon{
+      width:100%;cursor:pointer;font-family:inherit;
+      background:#1f2937;color:#fff;border:1px dashed #3ddc84;
+      border-radius:var(--radius);padding:12px 14px;
+      display:flex;align-items:center;gap:12px;text-align:right;
+    }
+    .android-soon .robot{flex:0 0 auto}
+    .android-soon .as-text{flex:1;min-width:0}
+    .android-soon .as-text b{display:block;font-size:.92rem}
+    .android-soon .as-text small{display:block;font-size:.72rem;color:#a8b3c2;margin-top:2px}
+    .android-soon .as-badge{
+      background:#3ddc84;color:#06301b;font-size:.72rem;font-weight:800;
+      border-radius:999px;padding:4px 12px;white-space:nowrap;
+    }
+
+    /* ---------- زر تحميل أندرويد (مفعّل) ---------- */
+    a.android-soon{ text-decoration:none; border-style:solid; }
+    a.android-soon .as-badge{ background:#3ddc84; }
+
+    /* ---------- قسم قيّمنا ---------- */
+    .review-wrap{max-width:640px;margin:14px auto 0;padding:0 12px}
+    .review-card{
+      background:#fff;border-radius:var(--radius);
+      box-shadow:0 2px 8px rgba(0,0,0,.06);
+      padding:14px 16px;text-align:center;
+      border-top:3px solid var(--accent);
+    }
+    .review-card h3{font-size:1rem;color:var(--primary-dark)}
+    .review-card p{font-size:.78rem;color:var(--muted);margin-top:4px}
+    .stars{display:flex;justify-content:center;gap:6px;margin:10px 0 8px;direction:ltr}
+    .star{
+      border:none;background:none;cursor:pointer;font-size:2.1rem;line-height:1;
+      color:#d6d3d1;transition:transform .12s,color .12s;padding:2px;
+    }
+    .star.on{color:#fbbf24}
+    .star:active{transform:scale(1.25)}
+    .review-card textarea{
+      width:100%;min-height:64px;resize:vertical;box-sizing:border-box;
+      font-family:inherit;font-size:.88rem;color:var(--text);
+      border:1px solid #e7e0d4;border-radius:10px;padding:8px 10px;background:#fffdf8;
+    }
+    .review-card textarea:focus{outline:2px solid var(--accent);border-color:transparent}
+    .review-send{
+      width:100%;border:none;cursor:pointer;font-family:inherit;margin-top:10px;
+      background:var(--primary);color:#fff;border-radius:12px;padding:12px;
+      font-size:.95rem;font-weight:800;
+    }
+    .review-send:active{background:var(--primary-dark)}
+    .review-note{font-size:.68rem;color:var(--muted);margin-top:8px}
+
     /* ---------- زر السلة العائم ---------- */
     #cartFab{
       position:fixed;bottom:16px;left:16px;right:16px;z-index:30;
@@ -191,7 +245,39 @@
 
 <main id="menuRoot"></main>
 
-<footer id="footText">مطاعم الشيباني ماستر — التربة، الطريق الدائري، خط 24</footer>
+<!-- زر تحميل تطبيق أندرويد -->
+<div class="android-soon-wrap">
+  <a class="android-soon" href="android/shibani-master-menu.apk" download="shibani-master-menu.apk" aria-label="تحميل تطبيق مطاعم الشيباني ماستر للأندرويد">
+    <svg class="robot" viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><g fill="#3ddc84"><path d="M8.6 5.1a.8.8 0 1 0-.9 1.3 7.5 7.5 0 0 1 2-1.7 7.5 7.5 0 0 1 .9-1.3l-1-1a.6.6 0 1 0-.8.8l1.1 1.1A9.6 9.6 0 0 0 8.6 5.1z" opacity=".95" transform="scale(.9) translate(0 -.4)"/><path d="M15.4 5.1a.8.8 0 1 1 .9 1.3 7.5 7.5 0 0 0-2-1.7 7.5 7.5 0 0 0-.9-1.3l1-1a.6.6 0 1 1 .8.8l-1.1 1.1a9.6 9.6 0 0 1 1.3 1.8z" opacity=".95" transform="scale(.9) translate(2.6 -.4)"/><rect x="5" y="9" width="14" height="9.5" rx="3"/><rect x="2.2" y="10" width="2.2" height="6.5" rx="1.1"/><rect x="19.6" y="10" width="2.2" height="6.5" rx="1.1"/><rect x="8" y="18" width="2.8" height="3" rx="1.2"/><rect x="13.2" y="18" width="2.8" height="3" rx="1.2"/></g><circle cx="9.4" cy="13" r=".95" fill="#1f2937"/><circle cx="14.6" cy="13" r=".95" fill="#1f2937"/></svg>
+    <span class="as-text">
+      <b>حمّل تطبيق مطاعم الشيباني ماستر</b>
+      <small>للأندرويد — 4 ميجا فقط • اطلب كأي تطبيق بضغطة من شاشتك</small>
+    </span>
+    <span class="as-badge">تحميل</span>
+  </a>
+</div>
+
+<!-- قسم «قيّمنا» — التقييم الرسمي عبر Google Play -->
+<div class="review-wrap">
+  <div class="review-card">
+    <h3>⭐ قيّمنا في Google Play</h3>
+    <p>اختر عدد النجوم واكتب رأيك — نفتح لك صفحة التقييم في Google Play ونجهّز رأيك ليُكتب مكانه</p>
+    <div class="stars" role="radiogroup" aria-label="التقييم بالنجوم">
+      <button class="star" type="button" data-n="1" aria-label="نجمة واحدة">★</button>
+      <button class="star" type="button" data-n="2" aria-label="نجمتان">★</button>
+      <button class="star" type="button" data-n="3" aria-label="3 نجوم">★</button>
+      <button class="star" type="button" data-n="4" aria-label="4 نجوم">★</button>
+      <button class="star" type="button" data-n="5" aria-label="5 نجوم">★</button>
+    </div>
+    <textarea id="reviewText" maxlength="500" placeholder="اكتب رأيك عن المنيو، الأسعار، سرعة التوصيل..."></textarea>
+    <button class="review-send" id="reviewSend" type="button">أرسل تقييمك ⭐</button>
+    <div class="review-note">التقييم الرسمي يُحتسب عبر Google Play بعد إضافة التطبيق للمتجر</div>
+  </div>
+</div>
+
+<footer id="footText">مطاعم الشيباني ماستر — التربة، الطريق الدائري، خط 24
+  <div class="copyright">© 2026 جميع الحقوق محفوظة — <strong>المهندس هيثم عادل</strong> · <a href="tel:777456253" style="color:inherit;text-decoration:none">📞 777456253</a></div>
+</footer>
 
 <button id="cartFab" onclick="openCart()">
   <span>🛒 السلة<span class="badge" id="cartCount">0</span></span>
@@ -409,6 +495,24 @@ function orderWhatsApp() {
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   navigator.serviceWorker.register('sw.js').catch(() => { /* غير حرج */ });
 }
+
+// قسم «قيّمنا» — التقييم الرسمي عبر Google Play
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.shibanimaster.menu';
+let reviewStars = 0;
+const starBtns = document.querySelectorAll('.star');
+starBtns.forEach(btn => btn.addEventListener('click', () => {
+  reviewStars = Number(btn.dataset.n);
+  starBtns.forEach(s => s.classList.toggle('on', Number(s.dataset.n) <= reviewStars));
+}));
+document.getElementById('reviewSend').addEventListener('click', async () => {
+  const ta = document.getElementById('reviewText');
+  const comment = (ta.value || '').trim();
+  if (reviewStars === 0) { showToast('اختر عدد النجوم أولاً ⭐'); return; }
+  const textToCopy = comment ? comment : ('تقييمي: ' + '★'.repeat(reviewStars));
+  try { await navigator.clipboard.writeText(textToCopy); } catch (e) { /* لا توجد حافظة */ }
+  showToast(comment ? 'شكراً! نُسخ رأيك — الصقه في Google Play 🌟' : 'شكراً! افتحنا لك صفحة التقييم في Google Play 🌟');
+  window.open(PLAY_STORE_URL, '_blank', 'noopener');
+});
 
 renderMenu();
 refreshCartUI();
