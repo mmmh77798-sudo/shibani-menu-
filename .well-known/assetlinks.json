@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.shibanimaster.menu",
+      "sha256_cert_fingerprints": [
+        "4F:B5:EB:FE:96:7A:EA:06:81:02:3E:85:CB:FC:EE:BB:D2:03:57:62:AA:AB:5D:E1:F7:07:B6:E9:1B:5F:C2:C7"
+      ]
+    }
+  }
+]

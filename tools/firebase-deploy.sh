@@ -79,7 +79,7 @@ VER = ver['name'].split('/')[-1]
 print('   ✓ VERSION =', VER)
 
 print('== 4/8 تجهيز الملفات (gzip + sha256)…')
-EXCLUDE = ('SIGNING-INFO', '.aab', '.keystore', '.jks', '.keystore_pass', 'README.md')
+EXCLUDE = ('SIGNING-INFO', '.aab', '.apk', '.keystore', '.jks', '.keystore_pass', 'README.md')
 SKIP_DIRS = {'tools', '.git', 'node_modules'}
 files = {}
 for root, dirs, names in os.walk(SRC):
