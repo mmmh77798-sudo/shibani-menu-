@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# نشر محتوى المستودع على Firebase Hosting عبر REST API — بلا خروج أي رمز من بيئتك.
-# يُشغَّل داخل Cloud Shell:  bash tools/firebase-deploy.sh
+# نشر محتوى المستودع على Firebase Hosting عبر REST API — لا يغادر أي رمز جهازك.
+# الاستخدام داخل Cloud Shell:  bash tools/firebase-deploy.sh
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PROJECT="$(gcloud config get-value project 2>/dev/null || true)"
 [ -z "$PROJECT" ] && PROJECT='shibani-47cdd'
 SITE_ID="$PROJECT"
-echo "المشروع: $PROJECT | الموقع: $SITE_ID"
+echo "== المشروع: $PROJECT | الموقع: $SITE_ID =="
 
 export FB_PROJECT="$PROJECT" FB_SITE_ID="$SITE_ID" SRC="$REPO_ROOT"
 export FB_TOKEN="$(gcloud auth print-access-token)"
@@ -15,57 +15,70 @@ export FB_TOKEN="$(gcloud auth print-access-token)"
 python3 - <<'PYEOF'
 import gzip, hashlib, json, os, sys, urllib.request, urllib.error
 
-PROJECT = os.environ['FB_PROJECT']; SITE_ID = os.environ['FB_SITE_ID']; SRC = os.environ['SRC']
+PROJECT = os.environ['FB_PROJECT']; SITE_ID_HINT = os.environ['FB_SITE_ID']; SRC = os.environ['SRC']
 TOKEN = os.environ['FB_TOKEN']
 BASE = 'https://firebasehosting.googleapis.com/v1beta1'
 H = {'Authorization': 'Bearer ' + TOKEN}
 
-def call(method, url, body=None, raw_headers=None, timeout=180):
+def fail(msg):
+    print('❌ ' + msg); sys.exit(1)
+
+def call(method, url, body=None, raw_headers=None, timeout=240, expect=(200,)):
     data = json.dumps(body).encode() if body is not None else None
     headers = raw_headers or dict(H, **({'Content-Type': 'application/json'} if body is not None else {}))
     rq = urllib.request.Request(url, data=data, method=method, headers=headers)
     try:
         with urllib.request.urlopen(rq, timeout=timeout) as r:
             out = r.read()
-            try: return r.status, json.loads(out or b'{}')
-            except Exception: return r.status, out
+            try: body_out = json.loads(out or b'{}')
+            except Exception: body_out = out.decode('utf-8', 'replace')
+            st = r.status
     except urllib.error.HTTPError as e:
         out = e.read().decode('utf-8', 'replace')
-        try: return e.code, json.loads(out)
-        except Exception: return e.code, out
+        try: body_out = json.loads(out)
+        except Exception: body_out = out
+        st = e.code
+    if st not in expect:
+        fail(f'{method} {url}\n   -> HTTP {st}\n   {json.dumps(body_out, ensure_ascii=False) if not isinstance(body_out, str) else body_out}')
+    return st, body_out
 
-print('== 1/7 تفعيل Firebase Hosting API…')
-s, b = call('POST', f'https://serviceusage.googleapis.com/v1/projects/{PROJECT}/services/firebasehosting.googleapis.com:enable', {})
-print('   serviceusage:', s)
+print('== 1/8 تفعيل Firebase Hosting API…')
+s, b = call('POST', f'https://serviceusage.googleapis.com/v1/projects/{PROJECT}/services/firebasehosting.googleapis.com:enable', {}, expect=(200,))
+print('   serviceusage: 200 ✓')
 
-print('== 2/7 فحص/إنشاء الموقع الافتراضي…')
+print('== 2/8 فحص/إنشاء الموقع الافتراضي…')
 s, b = call('GET', f'{BASE}/projects/{PROJECT}/sites')
-print('   sites.list:', s, str(b)[:200])
+print('   المواقع الحالية:', json.dumps(b, ensure_ascii=False))
 found = None
-if isinstance(b, dict):
-    for st in b.get('sites', []):
-        if st.get('type') == 'DEFAULT_SITE':
-            found = st['name'].split('/')[-1]; break
-SITE_ID = found or SITE_ID
-if not found:
-    s2, b2 = call('POST', f'{BASE}/projects/{PROJECT}/sites?siteId={SITE_ID}', {})
-    print('   sites.create:', s2, str(b2)[:200])
-print('   SITE_ID =', SITE_ID)
+for st in b.get('sites', []):
+    if st.get('type') == 'DEFAULT_SITE':
+        found = st['name'].split('/')[-1]; break
+SITE_ID = found or SITE_ID_HINT
+if found:
+    print('   ✓ يوجد موقع افتراضي:', SITE_ID)
+else:
+    try:
+        s2, b2 = call('POST', f'{BASE}/projects/{PROJECT}/sites?siteId={SITE_ID}', {}, expect=(200,))
+        print('   ✓ أُنشئ الموقع:', json.dumps(b2, ensure_ascii=False))
+    except SystemExit:
+        # 409: الموقع موجود أصلًا
+        s2, b2 = call('GET', f'{BASE}/projects/{PROJECT}/sites', expect=(200,))
+        for st in b2.get('sites', []):
+            if st['name'].split('/')[-1] == SITE_ID: found = SITE_ID; break
+        if not found: fail('تعذر إنشاء أو العثور على الموقع الافتراضي')
+        print('   ✓ الموقع موجود:', SITE_ID)
 
-print('== 3/7 إنشاء إصدار…')
+print('== 3/8 إنشاء إصدار (Version)…')
 cfg = {"config": {"headers": [
     {"glob": "**",            "headers": {"Cache-Control": "public, max-age=600"}},
     {"glob": "/img/**",       "headers": {"Cache-Control": "public, max-age=604800"}},
-    {"glob": "/icon-512.png", "headers": {"Cache-Control": "public, max-age=86400"}},
     {"glob": "/sw.js",        "headers": {"Cache-Control": "no-cache"}}
 ]}}
 s, ver = call('POST', f'{BASE}/sites/{SITE_ID}/versions', cfg)
-print('   versions.create:', s, str(ver)[:200])
-if not isinstance(ver, dict) or 'name' not in ver: sys.exit('فشل إنشاء الإصدار')
 VER = ver['name'].split('/')[-1]
-print('   VERSION =', VER)
+print('   ✓ VERSION =', VER)
 
-print('== 4/7 تجهيز الملفات…')
+print('== 4/8 تجهيز الملفات (gzip + sha256)…')
 EXCLUDE = ('SIGNING-INFO', '.aab', '.keystore', '.jks', '.keystore_pass', 'README.md')
 SKIP_DIRS = {'tools', '.git', 'node_modules'}
 files = {}
@@ -77,43 +90,42 @@ for root, dirs, names in os.walk(SRC):
         if any(x in rel for x in EXCLUDE): continue
         raw = open(p, 'rb').read()
         gz = gzip.compress(raw, mtime=0)
-        files[rel] = (hashlib.sha256(gz).hexdigest(), gz)
-print('   الملفات:', len(files))
+        files[rel] = (hashlib.sha256(gz).hexdigest(), gz, len(raw))
+print('   الملفات:', len(files), '— الحجم الكلي (قبل الضغط):', sum(v[2] for v in files.values()), 'بايت')
+if '/index.html' not in files: fail('index.html مفقود في المستودع!')
 
+print('== 5/8 populateFiles…')
 s, pop = call('POST', f'{BASE}/sites/{SITE_ID}/versions/{VER}:populateFiles',
               {"files": {k: v[0] for k, v in files.items()}})
-print('   populateFiles:', s, str(pop)[:250])
-required = pop.get('uploadRequiredHashes', []) if isinstance(pop, dict) else []
-upload_url = pop.get('uploadUrl') if isinstance(pop, dict) else None
+required = pop.get('uploadRequiredHashes', [])
+upload_url = pop.get('uploadUrl')
+print('   المطلوب رفعه:', len(required), 'من', len(files))
 hash2path = {v[0]: k for k, v in files.items()}
 
-print('== 5/7 رفع', len(required), 'ملف…')
-for i, h in enumerate(required, 1):
-    gz = files[hash2path[h]][1]
-    s, _ = call('POST', upload_url.rstrip('/') + '/' + h, None,
-                raw_headers={'Authorization': 'Bearer ' + TOKEN,
-                             'Content-Type': 'application/octet-stream'},
-                timeout=300) if False else (None, None)
-    # رفع خام بالبايتات:
-    rq = urllib.request.Request(upload_url.rstrip('/') + '/' + h, data=gz, method='POST',
+print('== 6/8 رفع الملفات…')
+for i, hsh in enumerate(required, 1):
+    gz = files[hash2path[hsh]][1]
+    rq = urllib.request.Request(upload_url.rstrip('/') + '/' + hsh, data=gz, method='POST',
         headers={'Authorization': 'Bearer ' + TOKEN, 'Content-Type': 'application/octet-stream'})
     try:
         with urllib.request.urlopen(rq, timeout=300) as r:
             st = r.status; r.read()
     except urllib.error.HTTPError as e:
-        st = e.code
-    print(f'   [{i}/{len(required)}] {hash2path[h]} -> {st}')
-    if st != 200: sys.exit('فشل رفع الملف أعلاه')
+        st = e.code; body_out = e.read().decode('utf-8', 'replace')
+        fail(f'فشل رفع {hash2path[hsh]}: HTTP {st}\n   {body_out}')
+    print(f'   [{i}/{len(required)}] {hash2path[hsh]} -> {st} ✓')
 
-print('== 6/7 FINALIZE…')
+print('== 7/8 FINALIZE…')
 s, fin = call('PATCH', f'{BASE}/sites/{SITE_ID}/versions/{VER}?update_mask=status', {"status": "FINALIZED"})
-print('   finalize:', s, fin.get('status') if isinstance(fin, dict) else fin)
+print('   status الآن:', fin.get('status'))
+if fin.get('status') != 'FINALIZED':
+    fail('الإصدار لم يُنهَ (FINALIZE) — الاستجابة: ' + json.dumps(fin, ensure_ascii=False)[:400])
 
-print('== 7/7 إنشاء الإصدار (Release)…')
+print('== 8/8 Release…')
 s, rel = call('POST', f'{BASE}/sites/{SITE_ID}/releases?versionName=sites/{SITE_ID}/versions/{VER}')
-print('   release:', s, str(rel)[:250])
+print('   الإصدار:', json.dumps(rel, ensure_ascii=False)[:400])
+
 print()
-print('✅ الرابطان:')
-print(f'   https://{SITE_ID}.web.app/')
-print(f'   https://{SITE_ID}.firebaseapp.com/')
+print('✅ اكتمل النشر. الرابط: https://%s.web.app/' % SITE_ID)
+print('   (قد يحتاج أقل من دقيقة ليظهر للجميع)')
 PYEOF
