@@ -1,0 +1,17 @@
+{
+  "name": "مطاعم الشيباني ماستر",
+  "short_name": "الشيباني ماستر",
+  "description": "قائمة مطاعم الشيباني ماستر — التربة، تعز — والطلب المباشر عبر واتساب",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "dir": "rtl",
+  "lang": "ar",
+  "theme_color": "#b91c1c",
+  "background_color": "#fdf6ec",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
