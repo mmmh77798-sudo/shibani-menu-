@@ -1,6 +1,6 @@
 // عامل الخدمة — يجعل المنيو يفتح بدون إنترنت (مطلوب غالباً لتطبيقات APK)
 // الصفحات: إنترنت أولًا مع الرجوع للكاش عند انقطاعه | باقي الملفات: كاش أولًا
-const CACHE = 'shibani-menu-v8';
+const CACHE = 'shibani-menu-v10';
 const ASSETS = [
   './index.html',
   './manifest.json',
@@ -17,7 +17,8 @@ const ASSETS = [
   './img/dishes/mixed-grill-family.jpg',
   './img/dishes/mango-juice.jpg',
   './img/dishes/karak-tea.jpg',
-  './img/dishes/mezze.jpg'
+  './img/dishes/mezze.jpg',
+  './img/logo.jpg'
 ];
 
 self.addEventListener('install', e => {
@@ -44,7 +45,15 @@ self.addEventListener('fetch', e => {
         const copy = res.clone();
         caches.open(CACHE).then(c => c.put(e.request, copy));
         return res;
-      }).catch(() => caches.match(e.request).then(cached => cached || caches.match('./index.html')))
+      }).catch(() =>
+        caches.match('./index.html').then(cached => {
+          if (cached) return cached;
+          return fetch('./index.html').catch(() => new Response(
+            '<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>منيو الشيباني ماستر</title><style>body{font-family:system-ui;background:#fdf6ec;color:#292524;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;margin:0;text-align:center;padding:20px;box-sizing:border-box}h1{color:#b91c1c}a{background:#b91c1c;color:#fff;padding:14px 28px;border-radius:99px;text-decoration:none;font-weight:800;margin-top:18px}</style></head><body><h1>🍽️ مطاعم الشيباني ماستر</h1><p>انقطع الاتصال مؤقتًا — اسحب للأسفل أو اضغط الزر</p><a href="https://shibani-47cdd.web.app/">إعادة المحاولة</a></body></html>',
+            { status: 200, headers: { 'Content-Type': 'text/html; charset=utf-8' } }
+          ));
+        })
+      )
     );
     return;
   }
