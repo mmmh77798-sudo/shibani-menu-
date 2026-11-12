@@ -689,14 +689,13 @@ document.getElementById('waBtn').addEventListener('click', () => {
 
 // ---------- أزرار الترويسة ----------
 const SHARE_URL = 'https://shibani-47cdd.web.app/';
-const APK_URL = 'https://github.com/mmmh77798-sudo/shibani-menu-/releases/download/v1.1.0/shibani-master-menu.apk';
 document.getElementById('shareBtn').addEventListener('click', async () => {
-  const data = { title: CONFIG.restaurant, text: 'اطلب الآن من ' + CONFIG.restaurant + ' — منيو وطلب عبر واتساب بلحظات 🍽️\n📱 تحميل تطبيق الأندرويد: ' + APK_URL, url: SHARE_URL };
+  const data = { title: CONFIG.restaurant, text: 'اطلب الآن من ' + CONFIG.restaurant + ' — منيو وطلب عبر واتساب بلحظات 🍽️', url: SHARE_URL };
   try {
     if (navigator.share) { await navigator.share(data); return; }
     throw new Error('no share api');
   } catch (e) {
-    try { await navigator.clipboard.writeText(SHARE_URL + '\n📱 تحميل تطبيق الأندرويد: ' + APK_URL); showToast('📋 نُسخ الرابط — الصقه أينما تريد'); }
+    try { await navigator.clipboard.writeText(SHARE_URL); showToast('📋 نُسخ الرابط — الصقه أينما تريد'); }
     catch (e2) { showToast('انسخ الرابط من المتصفح للمشاركة'); }
   }
 });

@@ -1,6 +1,6 @@
 // عامل الخدمة — يجعل المنيو يفتح بدون إنترنت (مطلوب غالباً لتطبيقات APK)
 // الصفحات: إنترنت أولًا مع الرجوع للكاش عند انقطاعه | باقي الملفات: كاش أولًا
-const CACHE = 'shibani-menu-v5';
+const CACHE = 'shibani-menu-v6';
 const ASSETS = [
   './index.html',
   './manifest.json',
