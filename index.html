@@ -18,7 +18,7 @@
   <!-- ============================================================
        ملاحظة: البيانات والأسعار والألوان كلها قابلة للتعديل
        الألوان: غيّرها في متغيرات CSS داخل وسم <style> (ابحث عن :root)
-       الأصناف والرقم: غيّرها في قسم "الإعدادات" داخل وسم <script> بالأسفل
+       الأصناف والصور والأسعار: قسم "الإعدادات" في <script> بالأسفل
        ============================================================ -->
   <style>
     :root{
@@ -47,30 +47,68 @@
 
     /* ---------- الترويسة ---------- */
     header{
+      position:relative;
       background:linear-gradient(160deg, var(--primary) 0%, var(--primary-dark) 100%);
       color:#fff;
       text-align:center;
-      padding:22px 16px 18px;
+      padding:26px 16px 18px;
       border-bottom:4px solid var(--accent);
     }
     header .logo{font-size:44px;line-height:1}
-    header h1{font-size:1.6rem;margin-top:6px;letter-spacing:.5px}
-    header p{font-size:.85rem;opacity:.9;margin-top:4px}
+    header h1{font-size:1.55rem;margin-top:6px;letter-spacing:.5px}
+    header p{font-size:.82rem;opacity:.92;margin-top:4px}
+    .h-actions{position:absolute;top:12px;left:12px;display:flex;gap:6px}
+    .h-btn{
+      display:inline-flex;align-items:center;gap:5px;
+      background:rgba(255,255,255,.16);color:#fff;text-decoration:none;
+      border:1px solid rgba(255,255,255,.35);border-radius:999px;
+      padding:7px 11px;font-size:.72rem;font-weight:700;font-family:inherit;cursor:pointer;
+    }
+    .h-btn:active{transform:scale(.95)}
 
     /* ---------- شريط الأقسام ---------- */
     nav{
       position:sticky;top:0;z-index:20;
       background:var(--bg);
-      display:flex;gap:8px;justify-content:center;
+      display:flex;gap:8px;justify-content:flex-start;
       padding:10px 12px;border-bottom:1px solid #e7e0d4;
-      overflow-x:auto;
+      overflow-x:auto;scrollbar-width:none;
     }
+    nav::-webkit-scrollbar{display:none}
     nav a{
       flex:0 0 auto;text-decoration:none;color:var(--primary);
       background:#fff;border:1.5px solid var(--primary);
-      padding:6px 16px;border-radius:999px;font-size:.85rem;font-weight:700;
+      padding:6px 16px;border-radius:999px;font-size:.83rem;font-weight:700;
     }
     nav a:active{background:var(--primary);color:#fff}
+
+    /* ---------- الأكثر طلباً ---------- */
+    .popular{max-width:640px;margin:12px auto 0;padding:0 12px}
+    .popular h2{
+      font-size:1rem;color:var(--primary-dark);margin:0 2px 8px;
+      display:flex;align-items:center;gap:6px;
+    }
+    .pop-row{
+      display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;
+      scroll-snap-type:x mandatory;scrollbar-width:none;
+    }
+    .pop-row::-webkit-scrollbar{display:none}
+    .pop-card{
+      flex:0 0 128px;scroll-snap-align:start;
+      background:#fff;border:none;border-radius:var(--radius);
+      box-shadow:0 2px 8px rgba(0,0,0,.08);overflow:hidden;
+      cursor:pointer;font-family:inherit;text-align:center;
+      display:flex;flex-direction:column;transition:transform .12s;
+    }
+    .pop-card:active{transform:scale(.96)}
+    .pop-card .pop-img{position:relative;height:76px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:34px}
+    .pop-card .pop-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .pop-card .pop-name{font-size:.75rem;font-weight:800;padding:6px 6px 0;line-height:1.35;min-height:34px}
+    .pop-card .pop-price{font-size:.75rem;font-weight:800;color:var(--primary-dark);padding:2px 6px}
+    .pop-card .pop-cta{
+      background:var(--accent);color:#3f2d04;font-size:.7rem;font-weight:800;
+      margin:6px 8px 8px;border-radius:8px;padding:5px 0;
+    }
 
     /* ---------- الأقسام والأصناف ---------- */
     main{max-width:640px;margin:0 auto;padding:8px 12px}
@@ -85,18 +123,18 @@
     .card{
       background:var(--card);border-radius:var(--radius);
       box-shadow:0 2px 8px rgba(0,0,0,.06);
-      padding:12px;display:flex;gap:10px;align-items:center;
+      padding:10px;display:flex;gap:10px;align-items:center;
     }
-    .card .emoji{
-      font-size:44px;flex:0 0 64px;height:64px;
-      display:flex;align-items:center;justify-content:center;
-      background:var(--bg);border-radius:12px;
+    .thumb{
+      position:relative;flex:0 0 76px;height:76px;border-radius:12px;overflow:hidden;
+      background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:34px;
     }
+    .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
     .card .info{flex:1;min-width:0}
-    .card .name{font-weight:700;font-size:.95rem}
-    .card .desc{font-size:.75rem;color:var(--muted);margin-top:2px}
+    .card .name{font-weight:700;font-size:.92rem}
+    .card .desc{font-size:.73rem;color:var(--muted);margin-top:2px}
     .card .row{display:flex;align-items:center;justify-content:space-between;margin-top:8px;gap:6px}
-    .price{font-weight:800;color:var(--primary-dark);font-size:.9rem;white-space:nowrap}
+    .price{font-weight:800;color:var(--primary-dark);font-size:.88rem;white-space:nowrap}
     .add-btn{
       border:none;cursor:pointer;background:var(--primary);color:#fff;
       font-family:inherit;font-size:.8rem;font-weight:700;
@@ -104,29 +142,24 @@
     }
     .add-btn:active{transform:scale(.95);background:var(--primary-dark)}
 
-    footer{text-align:center;font-size:.75rem;color:var(--muted);padding:24px 16px 8px}
-
-    /* ---------- حقوق الملكية ---------- */
+    footer{max-width:640px;margin:0 auto;text-align:center;font-size:.75rem;color:var(--muted);padding:24px 16px 8px}
     .copyright{font-size:.72rem;color:var(--muted);margin-top:10px;border-top:1px solid #e7e0d4;padding-top:10px}
-    .android-soon-wrap{max-width:640px;margin:4px auto 0;padding:0 12px}
-    .android-soon{
-      width:100%;cursor:pointer;font-family:inherit;
-      background:#1f2937;color:#fff;border:1px dashed #3ddc84;
-      border-radius:var(--radius);padding:12px 14px;
+
+    /* ---------- حقوق الملكية + زر أندرويد ---------- */
+    .android-soon-wrap{max-width:640px;margin:10px auto 0;padding:0 12px}
+    a.android-soon{
+      width:100%;text-decoration:none;font-family:inherit;
+      background:#1f2937;color:#fff;border:1px solid #3ddc84;
+      border-radius:var(--radius);padding:12px 14px;box-sizing:border-box;
       display:flex;align-items:center;gap:12px;text-align:right;
     }
-    .android-soon .robot{flex:0 0 auto}
-    .android-soon .as-text{flex:1;min-width:0}
-    .android-soon .as-text b{display:block;font-size:.92rem}
-    .android-soon .as-text small{display:block;font-size:.72rem;color:#a8b3c2;margin-top:2px}
-    .android-soon .as-badge{
+    a.android-soon .as-text{flex:1;min-width:0}
+    a.android-soon .as-text b{display:block;font-size:.92rem}
+    a.android-soon .as-text small{display:block;font-size:.72rem;color:#a8b3c2;margin-top:2px}
+    a.android-soon .as-badge{
       background:#3ddc84;color:#06301b;font-size:.72rem;font-weight:800;
-      border-radius:999px;padding:4px 12px;white-space:nowrap;
+      border-radius:999px;padding:5px 14px;white-space:nowrap;
     }
-
-    /* ---------- زر تحميل أندرويد (مفعّل) ---------- */
-    a.android-soon{ text-decoration:none; border-style:solid; }
-    a.android-soon .as-badge{ background:#3ddc84; }
 
     /* ---------- قسم قيّمنا ---------- */
     .review-wrap{max-width:640px;margin:14px auto 0;padding:0 12px}
@@ -146,7 +179,7 @@
     .star.on{color:#fbbf24}
     .star:active{transform:scale(1.25)}
     .review-card textarea{
-      width:100%;min-height:64px;resize:vertical;box-sizing:border-box;
+      width:100%;min-height:60px;resize:vertical;box-sizing:border-box;
       font-family:inherit;font-size:.88rem;color:var(--text);
       border:1px solid #e7e0d4;border-radius:10px;padding:8px 10px;background:#fffdf8;
     }
@@ -178,30 +211,51 @@
     }
 
     /* ---------- نافذة السلة ---------- */
-    #overlay{
-      position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;
-      opacity:0;pointer-events:none;transition:opacity .25s;
-    }
+    #overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:40;opacity:0;pointer-events:none;transition:opacity .25s}
     #overlay.show{opacity:1;pointer-events:auto}
     #cartSheet{
       position:fixed;bottom:0;left:0;right:0;z-index:50;
       max-width:640px;margin:0 auto;
       background:#fff;border-radius:20px 20px 0 0;
-      max-height:80vh;display:flex;flex-direction:column;
+      max-height:88vh;display:flex;flex-direction:column;
       transform:translateY(105%);transition:transform .3s;
       box-shadow:0 -6px 24px rgba(0,0,0,.2);
     }
     #cartSheet.show{transform:translateY(0)}
-    .sheet-head{
-      display:flex;align-items:center;justify-content:space-between;
-      padding:14px 16px;border-bottom:1px solid #eee;
-    }
+    .sheet-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid #eee}
     .sheet-head h3{font-size:1.05rem}
     .close-btn{border:none;background:#f3f0ea;border-radius:50%;width:34px;height:34px;font-size:1.1rem;cursor:pointer}
+
+    .order-opts{padding:10px 16px 0;border-bottom:1px solid #eee}
+    .seg{display:flex;background:#f3f0ea;border-radius:12px;padding:4px;gap:4px;margin-bottom:8px}
+    .seg button{
+      flex:1;border:none;cursor:pointer;font-family:inherit;
+      background:transparent;border-radius:9px;padding:9px 6px;
+      font-size:.82rem;font-weight:800;color:var(--muted);transition:all .2s;
+    }
+    .seg button.on{background:#fff;color:var(--primary-dark);box-shadow:0 1px 4px rgba(0,0,0,.12)}
+    .addr{
+      width:100%;box-sizing:border-box;font-family:inherit;font-size:.85rem;
+      border:1px solid #e7e0d4;border-radius:10px;padding:9px 10px;margin-bottom:8px;
+      background:#fffdf8;
+    }
+    .addr:focus{outline:2px solid var(--accent);border-color:transparent}
+    .promo-row{display:flex;gap:8px;margin-bottom:6px}
+    .promo-row input{
+      flex:1;min-width:0;font-family:inherit;font-size:.85rem;letter-spacing:1px;
+      border:1px solid #e7e0d4;border-radius:10px;padding:9px 10px;text-transform:uppercase;
+    }
+    .promo-row input:focus{outline:2px solid var(--accent)}
+    .promo-apply{
+      border:none;cursor:pointer;font-family:inherit;font-weight:800;font-size:.82rem;
+      background:#292524;color:#fff;border-radius:10px;padding:0 16px;
+    }
+    .promo-ok{font-size:.75rem;color:var(--green-dark);font-weight:700;padding:0 2px 8px}
+
     .cart-items{overflow-y:auto;padding:10px 16px;flex:1}
     .cart-line{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px dashed #e7e0d4}
     .cart-line:last-child{border-bottom:none}
-    .cart-line .ci-emoji{font-size:30px}
+    .cart-line .ci-emoji{font-size:30px;flex:0 0 auto}
     .cart-line .ci-info{flex:1;min-width:0}
     .cart-line .ci-name{font-size:.9rem;font-weight:700}
     .cart-line .ci-price{font-size:.8rem;color:var(--muted)}
@@ -211,8 +265,11 @@
       background:var(--bg);font-size:1.1rem;font-weight:800;color:var(--primary-dark);
     }
     .qty span{min-width:22px;text-align:center;font-weight:800}
+
     .sheet-foot{padding:12px 16px 18px;border-top:1px solid #eee}
-    .total-row{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:800;margin-bottom:10px}
+    .subtotal-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--muted);margin-bottom:4px}
+    .discount-row{display:flex;justify-content:space-between;font-size:.85rem;color:var(--green-dark);font-weight:700;margin-bottom:4px}
+    .total-row{display:flex;justify-content:space-between;font-size:1.15rem;font-weight:800;margin-bottom:10px}
     .wa-btn{
       width:100%;border:none;cursor:pointer;font-family:inherit;
       background:var(--green);color:#fff;border-radius:12px;
@@ -226,22 +283,33 @@
     /* ---------- تنبيه صغير ---------- */
     #toast{
       position:fixed;bottom:90px;left:50%;transform:translate(-50%,20px);
-      background:#292524;color:#fff;font-size:.85rem;
+      background:#292524;color:#fff;font-size:.85rem;max-width:88vw;text-align:center;
       padding:8px 18px;border-radius:999px;opacity:0;z-index:60;
       transition:all .25s;pointer-events:none;white-space:nowrap;
     }
+    @media (max-width:400px){ #toast{white-space:normal} }
     #toast.show{opacity:1;transform:translate(-50%,0)}
   </style>
 </head>
 <body>
 
 <header>
+  <div class="h-actions">
+    <a class="h-btn" href="tel:967779703535" aria-label="اتصل بالمطعم">📞 اتصل</a>
+    <button class="h-btn" id="shareBtn" type="button" aria-label="شارك المنيو">🔗 شارك</button>
+  </div>
   <div class="logo">🍽️</div>
   <h1 id="restName">مطاعم الشيباني ماستر</h1>
   <p>📍 التربة — الطريق الدائري · <a href="https://maps.app.goo.gl/sVjpsbmtyN8QHqAA7" style="color:#fde68a">الخرائط</a> · مفتوح ٢٤ ساعة</p>
 </header>
 
-<nav id="catNav"></nav>
+<nav id="catNav" aria-label="الأقسام"></nav>
+
+<!-- الأكثر طلباً -->
+<section class="popular" aria-label="الأكثر طلباً">
+  <h2>🔥 الأكثر طلباً</h2>
+  <div class="pop-row" id="popRow"></div>
+</section>
 
 <main id="menuRoot"></main>
 
@@ -289,12 +357,30 @@
 <div id="cartSheet" role="dialog" aria-label="سلة الطلب">
   <div class="sheet-head">
     <h3>🛒 سلة الطلب</h3>
-    <button class="close-btn" onclick="closeCart()">✕</button>
+    <button class="close-btn" onclick="closeCart()" aria-label="إغلاق">✕</button>
   </div>
+
+  <div class="order-opts">
+    <div class="seg" role="tablist" aria-label="نوع الطلب">
+      <button type="button" class="on" data-v="delivery" id="segDelivery">🛵 توصيل</button>
+      <button type="button" data-v="pickup" id="segPickup">🍽️ استلام من الفرع</button>
+    </div>
+    <input id="addrInput" class="addr" type="text" autocomplete="street-address"
+           placeholder="عنوان التوصيل + أقرب نقطة دالة (الحي، الشارع، معلم)...">
+    <div class="promo-row">
+      <input id="promoInput" type="text" maxlength="20" autocomplete="off" placeholder="كود خصم… جرّب SHIBANI5">
+      <button class="promo-apply" id="promoApply" type="button">تطبيق</button>
+    </div>
+    <div class="promo-ok" id="promoOk" hidden>✅ كود SHIBANI5 مطبّق — خصم 5% على طلبك</div>
+  </div>
+
   <div class="cart-items" id="cartItems"></div>
+
   <div class="sheet-foot">
-    <div class="total-row"><span>المجموع</span><span id="cartTotal">0 ر.ي</span></div>
-    <button class="wa-btn" onclick="orderWhatsApp()">
+    <div class="subtotal-row"><span>المجموع</span><span id="cartSubtotal">0 ر.ي</span></div>
+    <div class="discount-row" id="discountRow" hidden><span>خصم كوبون SHIBANI5 (5%)</span><span id="discountVal">0 ر.ي</span></div>
+    <div class="total-row"><span>الإجمالي</span><span id="cartTotal">0 ر.ي</span></div>
+    <button class="wa-btn" id="waBtn" type="button">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="#fff" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.14 1.6 5.95L2.05 22l4.33-1.13a9.87 9.87 0 0 0 5.66 1.8h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-2.5.66.67-2.44-.2-.32a8.17 8.17 0 0 1-1.26-4.39c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 5.82 2.41 8.18 8.18 0 0 1 2.4 5.83c0 4.54-3.7 8.24-8.23 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.8-.23-.09-.4-.13-.57.12-.17.25-.65.8-.8.97-.15.17-.3.18-.55.06-.25-.12-1.05-.38-2-1.22-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.15.17-.25.25-.42.09-.17.04-.32-.02-.44-.06-.12-.57-1.36-.78-1.86-.2-.49-.41-.42-.57-.43h-.49c-.17 0-.44.06-.67.32-.23.25-.88.86-.88 2.09 0 1.24.9 2.44 1.02 2.6.12.17 1.77 2.7 4.28 3.79.6.26 1.06.41 1.43.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
       اطلب عبر واتساب
     </button>
@@ -307,59 +393,62 @@
 <script>
 /* ============================================================
    ⚙️ الإعدادات — عدّل هنا فقط:
-   1) رقم واتساب بدون + وبدون مسافات (مثال: 967771234567)
-   2) اسم المطعم والوصف والعملة
-   3) الأصناف والأسعار (السعر بالريال اليمني)
+   1) رقم واتساب بدون + وبدون مسافات
+   2) اسم المطعم والوصف والعملة وكود الخصم
+   3) الأصناف والصور والأسعار (السعر بالريال اليمني)
    ============================================================ */
 const CONFIG = {
-  restaurant:  'مطاعم الشيباني ماستر',   // الاسم الرسمي من الموقع
+  restaurant:  'مطاعم الشيباني ماستر',
   tagline:     'أشهى المشاوي والمأكولات اليمنية الأصيلة — مفتوح ٢٤ ساعة',
-  whatsapp:    '967779703535',           // واتساب المطعم من الموقع (779 70 35 35)
-  currency:    'ر.ي',                    // العملة بعد السعر
+  whatsapp:    '967779703535',
+  phone:       '967779703535',
+  currency:    'ر.ي',
+  promo:       { code: 'SHIBANI5', percent: 5, once: true },  // once = مرة واحدة للعميل
+  popular:     ['مندي دجاج', 'مندي لحم', 'ريش لحم', 'عصير مانجو طازج'],
   categories: [
     {
       name: 'المشاوي', emoji: '🔥', id: 'grills',
       items: [
-        { name: 'دجاج مشوي على الفحم',   desc: 'نصف دجاجة مع صلصة الطحينة',    price: 2500, emoji: '🍗' },
-        { name: 'لحم مشوي على الفحم',    desc: 'نصف كيلو لحم طازج',            price: 4000, emoji: '🥩' },
-        { name: 'ريش لحم',               desc: 'ريش لحم مشوية بالتتبيلة',      price: 3500, emoji: '🍖' },
+        { name: 'دجاج مشوي على الفحم',   desc: 'نصف دجاجة مع صلصة الطحينة',    price: 2500, emoji: '🍗', img: 'img/dishes/grilled-chicken.jpg' },
+        { name: 'لحم مشوي على الفحم',    desc: 'نصف كيلو لحم بلدي طازج',       price: 4000, emoji: '🥩', img: 'img/dishes/grilled-lamb.jpg' },
+        { name: 'ريش لحم',               desc: 'ريش لحم مشوية بالتتبيلة',      price: 3500, emoji: '🍖', img: 'img/dishes/lamb-chops.jpg' },
         { name: 'شيش طاووق',             desc: 'أسياخ دجاج متبل على الفحم',    price: 2800, emoji: '🍢' }
       ]
     },
     {
       name: 'حنيد ومندي', emoji: '🍚', id: 'mandi',
       items: [
-        { name: 'مندي دجاج',             desc: 'أرز بسمتي بالزعفران + دجاج',   price: 2500, emoji: '🍗' },
-        { name: 'مندي لحم',              desc: 'لحم بلدي على الأرز',           price: 4500, emoji: '🍖' },
-        { name: 'حنيد لحم',              desc: 'حنيد على الطريقة الحضرمية',    price: 4000, emoji: '🐑' },
-        { name: 'مظبي دجاج',             desc: 'دجاج على المنقل مع الأرز',     price: 2500, emoji: '🔥' },
-        { name: 'برياني لحم',            desc: 'أرز برياني بالبهارات',         price: 3000, emoji: '🍛' }
+        { name: 'مندي دجاج',             desc: 'أرز بسمتي بالزعفران + دجاج',   price: 2500, emoji: '🍗', img: 'img/dishes/mandi-chicken.jpg' },
+        { name: 'مندي لحم',              desc: 'لحم بلدي على الأرز',           price: 4500, emoji: '🍖', img: 'img/dishes/mandi-lamb.jpg' },
+        { name: 'حنيد لحم',              desc: 'حنيد على الطريقة الحضرمية',    price: 4000, emoji: '🐑', img: 'img/dishes/hanid.jpg' },
+        { name: 'مظبي دجاج',             desc: 'دجاج على المنقل الحجري',       price: 2500, emoji: '🔥', img: 'img/dishes/mathbi-chicken.jpg' },
+        { name: 'برياني لحم',            desc: 'أرز برياني بالبهارات',         price: 3000, emoji: '🍛', img: 'img/dishes/biryani.jpg' }
       ]
     },
     {
       name: 'وجبات عائلية', emoji: '🥘', id: 'family',
       items: [
-        { name: 'مندي عائلي (٤ أشخاص)',  desc: 'دجاجتان + طبق أرز كبير',       price: 9000, emoji: '🍗' },
-        { name: 'مشويات عائلية',         desc: 'تشكيلة لحوم ودجاج للعائلة',    price: 12000, emoji: '🥩' },
-        { name: 'برياني عائلي',          desc: 'قدر برياني كبير مع سلطة',      price: 8000, emoji: '🍛' }
+        { name: 'مندي عائلي (٤ أشخاص)',  desc: 'دجاجتان + طبق أرز كبير',       price: 9000, emoji: '🍗', img: 'img/dishes/mandi-chicken.jpg' },
+        { name: 'مشويات عائلية',         desc: 'تشكيلة لحوم ودجاج للعائلة',    price: 12000, emoji: '🥩', img: 'img/dishes/mixed-grill-family.jpg' },
+        { name: 'برياني عائلي',          desc: 'قدر برياني كبير مع سلطة',      price: 8000, emoji: '🍛', img: 'img/dishes/biryani.jpg' }
       ]
     },
     {
       name: 'مقبلات وسلطات', emoji: '🥗', id: 'salads',
       items: [
-        { name: 'طحينة',                 desc: 'طحينة طازجة',                  price: 400,  emoji: '🥣' },
+        { name: 'طحينة',                 desc: 'طحينة طازجة محضرة يوميًا',     price: 400,  emoji: '🥣' },
         { name: 'سلطة خضراء',            desc: 'طماطم وخيار وبصل بالليمون',    price: 400,  emoji: '🥗' },
         { name: 'حمص بالطحينة',          desc: 'حمص مطحون مع زيت زيتون',       price: 600,  emoji: '🫘' },
         { name: 'بابا غنوج',             desc: 'باذنجان مشوي بالطحينة',        price: 700,  emoji: '🍆' },
-        { name: 'خبز طازج',              desc: 'من الفرن مباشرة',              price: 100,  emoji: '🫓' }
+        { name: 'خبز طازج',              desc: 'من الفرن مباشرة على الحطب',    price: 100,  emoji: '🫓' }
       ]
     },
     {
       name: 'المشروبات', emoji: '🥤', id: 'drinks',
       items: [
+        { name: 'عصير مانجو طازج',       desc: 'كوب كبير من المانجو الطبيعي',  price: 700,  emoji: '🥭', img: 'img/dishes/mango-juice.jpg' },
         { name: 'شاي كرك',               desc: 'شاي بحليب على الطريقة الخليجية', price: 300, emoji: '🫖' },
         { name: 'قهوة عربية',            desc: 'دلة قهوة سادة مع هيل',          price: 500, emoji: '☕' },
-        { name: 'عصير مانجو طازج',       desc: 'كوب كبير',                      price: 700, emoji: '🥭' },
         { name: 'لبن طازج',              desc: 'كوب بارد',                      price: 400, emoji: '🥛' },
         { name: 'بيبسي',                 desc: 'علبة 330 مل',                   price: 300, emoji: '🥤' },
         { name: 'شاهي عدني',             desc: 'شاي عدني بالهيل والزعفران',     price: 400, emoji: '🍵' }
@@ -372,26 +461,57 @@ const CONFIG = {
    لا تعدّل ما تحت هذا السطر إلا إذا كنت تعرف ماذا تفعل 🙂
    ============================================================ */
 
-const fmt = n => n.toLocaleString('en-US') + ' ' + CONFIG.currency;
+const fmt = n => Math.round(n).toLocaleString('en-US') + ' ' + CONFIG.currency;
 
-// خريطة الأصناف: المفتاح = اسم الصنف (حتى تبقى سلتك محفوظة بعد التحديث)
 const ITEM_MAP = {};
 CONFIG.categories.forEach(cat => cat.items.forEach(it => { ITEM_MAP[it.name] = { ...it, cat: cat.name }; }));
 
-// السلة محفوظة في الجهاز (تبقى حتى بعد إغلاق التطبيق)
+// السلة محفوظة في الجهاز
 let cart = {};
 try { cart = JSON.parse(localStorage.getItem('shibani-cart') || '{}'); } catch (e) { cart = {}; }
 const saveCart = () => localStorage.setItem('shibani-cart', JSON.stringify(cart));
 
-// ---------- بناء المنيو من CONFIG ----------
+// نوع الطلب + الكوبون
+let orderType = 'delivery';
+let promoApplied = false;
+
+function thumb(it, size) {
+  const inner = it.img
+    ? `<img loading="lazy" src="${it.img}" alt="${it.name}" onerror="this.style.display='none'">${it.emoji}`
+    : it.emoji;
+  return `<div class="thumb">${inner}</div>`;
+}
+
+// ---------- بناء «الأكثر طلباً» ----------
+function renderPopular() {
+  const row = document.getElementById('popRow');
+  row.innerHTML = CONFIG.popular.map(name => {
+    const it = ITEM_MAP[name];
+    if (!it) return '';
+    const media = it.img
+      ? `<div class="pop-img"><img loading="lazy" src="${it.img}" alt="${it.name}" onerror="this.style.display='none'">${it.emoji}</div>`
+      : `<div class="pop-img">${it.emoji}</div>`;
+    return `
+      <button class="pop-card" data-name="${name}" aria-label="أضف ${name} للسلة">
+        ${media}
+        <span class="pop-name">${name}</span>
+        <span class="pop-price">${fmt(it.price)}</span>
+        <span class="pop-cta">أضف للسلة +</span>
+      </button>`;
+  }).join('');
+  row.addEventListener('click', e => {
+    const card = e.target.closest('.pop-card');
+    if (card) addToCart(card.dataset.name);
+  });
+}
+
+// ---------- بناء المنيو ----------
 function renderMenu() {
   document.getElementById('restName').textContent = CONFIG.restaurant;
-  document.getElementById('footText').textContent = CONFIG.restaurant + ' — ' + CONFIG.tagline;
+  document.getElementById('footText').firstChild.textContent = CONFIG.restaurant + ' — التربة، الطريق الدائري، خط 24';
 
   const nav = document.getElementById('catNav');
-  nav.innerHTML = CONFIG.categories.map(c =>
-    `<a href="#${c.id}">${c.emoji} ${c.name}</a>`
-  ).join('');
+  nav.innerHTML = CONFIG.categories.map(c => `<a href="#${c.id}">${c.emoji} ${c.name}</a>`).join('');
 
   const root = document.getElementById('menuRoot');
   root.innerHTML = CONFIG.categories.map(cat => `
@@ -400,47 +520,53 @@ function renderMenu() {
       <div class="items">
         ${cat.items.map(it => `
           <div class="card">
-            <div class="emoji">${it.emoji}</div>
+            ${thumb(it)}
             <div class="info">
               <div class="name">${it.name}</div>
               <div class="desc">${it.desc || ''}</div>
               <div class="row">
                 <span class="price">${fmt(it.price)}</span>
-                <button class="add-btn" data-name="${it.name}">أضف للسلة +</button>
+                <button class="add-btn" data-name="${it.name}">أضف +</button>
               </div>
             </div>
           </div>`).join('')}
       </div>
     </section>`).join('');
 
-  // أزرار الإضافة (event delegation حتى تعمل بدون إعادة ربط)
   root.addEventListener('click', e => {
     const btn = e.target.closest('.add-btn');
-    if (!btn) return;
-    addToCart(btn.dataset.name);
+    if (btn) addToCart(btn.dataset.name);
   });
 }
 
-// ---------- منطق السلة ----------
+// ---------- منطق السلة والأسعار ----------
 function cartCount() { return Object.values(cart).reduce((s, q) => s + q, 0); }
-function cartTotal() { return Object.entries(cart).reduce((s, [name, q]) => s + (ITEM_MAP[name] ? ITEM_MAP[name].price * q : 0), 0); }
+function cartSubtotal() { return Object.entries(cart).reduce((s, [name, q]) => s + (ITEM_MAP[name] ? ITEM_MAP[name].price * q : 0), 0); }
+function discountAmount() { return promoApplied ? cartSubtotal() * (CONFIG.promo.percent / 100) : 0; }
+function cartTotal() { return cartSubtotal() - discountAmount(); }
 
 function addToCart(name) {
   cart[name] = (cart[name] || 0) + 1;
   saveCart(); refreshCartUI();
-  showToast('أُضيفت «' + name + '» للسلة ✔');
+  showToast('أُضيفت «' + name + '» ✔');
 }
 function changeQty(name, delta) {
   cart[name] = (cart[name] || 0) + delta;
   if (cart[name] <= 0) delete cart[name];
   saveCart(); refreshCartUI();
 }
-function clearCart() { cart = {}; saveCart(); refreshCartUI(); }
+function clearCart() { cart = {}; promoApplied = false; saveCart(); refreshCartUI(); }
 
 function refreshCartUI() {
+  const sub = cartSubtotal(), disc = discountAmount(), tot = cartTotal();
   document.getElementById('cartCount').textContent = cartCount();
-  document.getElementById('cartTotalFab').textContent = fmt(cartTotal());
-  document.getElementById('cartTotal').textContent = fmt(cartTotal());
+  document.getElementById('cartTotalFab').textContent = fmt(tot);
+  document.getElementById('cartSubtotal').textContent = fmt(sub);
+  document.getElementById('cartTotal').textContent = fmt(tot);
+  document.getElementById('discountRow').hidden = !promoApplied;
+  document.getElementById('discountVal').textContent = '- ' + fmt(disc);
+  document.getElementById('promoOk').hidden = !promoApplied;
+  document.getElementById('promoInput').value = promoApplied ? CONFIG.promo.code : '';
 
   const box = document.getElementById('cartItems');
   const entries = Object.entries(cart);
@@ -459,9 +585,9 @@ function refreshCartUI() {
           <div class="ci-price">${fmt(it.price)} × ${qty} = ${fmt(it.price * qty)}</div>
         </div>
         <div class="qty">
-          <button onclick="changeQty('${name}', -1)">−</button>
+          <button onclick="changeQty('${name}', -1)" aria-label="إنقاص">−</button>
           <span>${qty}</span>
-          <button onclick="changeQty('${name}', 1)">+</button>
+          <button onclick="changeQty('${name}', 1)" aria-label="زيادة">+</button>
         </div>
       </div>`;
   }).join('');
@@ -475,28 +601,85 @@ function showToast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   clearTimeout(t._timer);
-  t._timer = setTimeout(() => t.classList.remove('show'), 1800);
+  t._timer = setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+// نوع الطلب (توصيل / استلام)
+const segButtons = document.querySelectorAll('.seg button');
+segButtons.forEach(btn => btn.addEventListener('click', () => {
+  orderType = btn.dataset.v;
+  segButtons.forEach(b => b.classList.toggle('on', b === btn));
+  const addr = document.getElementById('addrInput');
+  addr.style.display = orderType === 'delivery' ? 'block' : 'none';
+  if (orderType === 'pickup') addr.value = '';
+}));
+
+// تطبيق كود الخصم
+document.getElementById('promoApply').addEventListener('click', () => {
+  const input = document.getElementById('promoInput');
+  const code = (input.value || '').trim().toUpperCase();
+  if (!code) { showToast('اكتب كود الخصم أولاً'); return; }
+  if (code !== CONFIG.promo.code.toUpperCase()) { showToast('الكود غير صحيح — جرّب ' + CONFIG.promo.code); return; }
+  if (CONFIG.promo.once && localStorage.getItem('shibani-promo-used') === '1') {
+    showToast('استخدم الكود مرة واحدة فقط لكل عميل 🙏');
+    return;
+  }
+  promoApplied = true;
+  saveCart(); refreshCartUI();
+  showToast('✅ خصم ' + CONFIG.promo.percent + '% مطبّق على طلبك');
+});
+
+// رقم الطلب التسلسلي
+function nextOrderNumber() {
+  const cur = Number(localStorage.getItem('shibani-order-seq') || '1024');
+  localStorage.setItem('shibani-order-seq', String(cur + 1));
+  return cur;
 }
 
 // ---------- الطلب عبر واتساب ----------
-function orderWhatsApp() {
+document.getElementById('waBtn').addEventListener('click', () => {
   if (cartCount() === 0) { showToast('سلتك فارغة — أضف أصنافاً أولاً'); return; }
-  let msg = '🍽️ طلب جديد من ' + CONFIG.restaurant + '\n\n';
+  const addr = document.getElementById('addrInput').value.trim();
+  if (orderType === 'delivery' && !addr) { showToast('اكتب عنوان التوصيل، أو اختر «استلام من الفرع»'); return; }
+
+  const orderNo = nextOrderNumber();
+  let msg = '🍽️ طلب جديد من ' + CONFIG.restaurant + '\n';
+  msg += 'رقم الطلب: #' + orderNo + '\n';
+  if (orderType === 'delivery') {
+    msg += 'نوع الطلب: 🛵 توصيل\nالعنوان: ' + addr + '\n';
+  } else {
+    msg += 'نوع الطلب: 🍽️ استلام من الفرع — التربة، الطريق الدائري\n';
+  }
+  msg += '\nالطلبات:\n';
   Object.entries(cart).forEach(([name, qty]) => {
     const it = ITEM_MAP[name];
     msg += '• ' + name + ' × ' + qty + ' = ' + fmt(it.price * qty) + '\n';
   });
-  msg += '\nالمجموع: ' + fmt(cartTotal());
-  msg += '\n\nالرجاء تأكيد الطلب والتوصيل 🙏';
-  window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank');
-}
+  const sub = cartSubtotal(), disc = discountAmount(), tot = cartTotal();
+  msg += '\nالمجموع: ' + fmt(sub);
+  if (promoApplied) {
+    msg += '\nخصم كود ' + CONFIG.promo.code + ' (-' + CONFIG.promo.percent + '%): -' + fmt(disc);
+    localStorage.setItem('shibani-promo-used', '1');
+  }
+  msg += '\nالإجمالي: ' + fmt(tot);
+  msg += '\n\n⏳ التوصيل المتوقع خلال ٢٠–٣٠ دقيقة — شكراً لثقتكم 🙏';
 
-// ---------- تسجيل عامل الخدمة (للعمل بدون إنترنت وتحويل APK) ----------
-if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-  navigator.serviceWorker.register('sw.js').catch(() => { /* غير حرج */ });
-}
+  window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+});
 
-// قسم «قيّمنا» — التقييم الرسمي عبر Google Play
+// ---------- أزرار الترويسة ----------
+document.getElementById('shareBtn').addEventListener('click', async () => {
+  const data = { title: CONFIG.restaurant, text: 'اطلب الآن من ' + CONFIG.restaurant + ' — منيو وطلب عبر واتساب بلحظات 🍽️', url: location.href };
+  try {
+    if (navigator.share) { await navigator.share(data); return; }
+    throw new Error('no share api');
+  } catch (e) {
+    try { await navigator.clipboard.writeText(location.href); showToast('📋 نُسخ الرابط — الصقه أينما تريد'); }
+    catch (e2) { showToast('انسخ الرابط من المتصفح للمشاركة'); }
+  }
+});
+
+// ---------- قسم «قيّمنا» — التقييم الرسمي عبر Google Play ----------
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.shibanimaster.menu';
 let reviewStars = 0;
 const starBtns = document.querySelectorAll('.star');
@@ -514,6 +697,12 @@ document.getElementById('reviewSend').addEventListener('click', async () => {
   window.open(PLAY_STORE_URL, '_blank', 'noopener');
 });
 
+// ---------- تسجيل عامل الخدمة ----------
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  navigator.serviceWorker.register('sw.js').catch(() => { /* غير حرج */ });
+}
+
+renderPopular();
 renderMenu();
 refreshCartUI();
 </script>

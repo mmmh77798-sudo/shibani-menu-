@@ -1,7 +1,22 @@
 // عامل الخدمة — يجعل المنيو يفتح بدون إنترنت (مطلوب غالباً لتطبيقات APK)
-// ملاحظة: الصفحات تُجلب من الإنترنت أولًا (يظهر التحديث فورًا) مع الرجوع للكاش عند انقطاع النت
-const CACHE = 'shibani-menu-v2';
-const ASSETS = ['./index.html', './manifest.json', './icon-192.png', './icon-512.png'];
+// الصفحات: إنترنت أولًا مع الرجوع للكاش عند انقطاعه | باقي الملفات: كاش أولًا
+const CACHE = 'shibani-menu-v3';
+const ASSETS = [
+  './index.html',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
+  './img/dishes/mandi-chicken.jpg',
+  './img/dishes/mandi-lamb.jpg',
+  './img/dishes/grilled-chicken.jpg',
+  './img/dishes/grilled-lamb.jpg',
+  './img/dishes/lamb-chops.jpg',
+  './img/dishes/hanid.jpg',
+  './img/dishes/mathbi-chicken.jpg',
+  './img/dishes/biryani.jpg',
+  './img/dishes/mixed-grill-family.jpg',
+  './img/dishes/mango-juice.jpg'
+];
 
 self.addEventListener('install', e => {
   e.waitUntil(
@@ -21,7 +36,6 @@ self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
   const isPage = e.request.mode === 'navigate' || e.request.destination === 'document';
 
-  // الصفحة: من الإنترنت أولًا، وإلا الكاش (وضع بدون إنترنت)
   if (isPage) {
     e.respondWith(
       fetch(e.request).then(res => {
@@ -33,7 +47,6 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // باقي الملفات (أيقونات… إلخ): الكاش أولًا ثم الإنترنت
   e.respondWith(
     caches.match(e.request).then(cached => cached || fetch(e.request).then(res => {
       const copy = res.clone();
