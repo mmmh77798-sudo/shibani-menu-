@@ -700,9 +700,11 @@ document.getElementById('reviewSend').addEventListener('click', async () => {
   window.open(PLAY_STORE_URL, '_blank', 'noopener');
 });
 
-// ---------- تسجيل عامل الخدمة ----------
+// ---------- إلغاء عامل الخدمة نهائيًا + مسح كل الكاش الملوث ----------
+// المنيو صفحة ثابتة خفيفة — لا يحتاج كاش بالذود؛ الشبكة أسرع من حل مشاكله.
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
-  navigator.serviceWorker.register('sw.js').catch(() => { /* غير حرج */ });
+  navigator.serviceWorker.getRegistrations().then(rs => rs.forEach(r => r.unregister())).catch(() => {});
+  if (window.caches) caches.keys().then(keys => keys.forEach(k => caches.delete(k))).catch(() => {});
 }
 
 renderPopular();
