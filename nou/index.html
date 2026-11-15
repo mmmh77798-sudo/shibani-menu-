@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>نور كلكشن | كتالوج الحلول الرقمية — إب، اليمن</title>
+<meta name="description" content="كتالوج نور كلكشن: ١٠ حلول رقمية جاهزة للمطاعم والعيادات والمتاجر والشركات — منيو رقمي، نظام حجز مواعيد، كتالوج تجزئة، دعوات إلكترونية والمزيد. اطلب أونلاين ويصلك لواتساب.">
+<meta name="theme-color" content="#0b2a28">
+<style>
+:root{
+  --bg:#0b2a28; --bg2:#103a36; --card:#123f3a; --card2:#16493f;
+  --gold:#f0b429; --gold-soft:#f5cf6b; --ink:#f5f0e1; --muted:#9fc4bc; --line:#1f5a52;
+  --green:#22c55e; --wa:#25d366; --radius:18px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,#0b2a28 0%,#0d322f 40%,#0b2a28 100%);color:var(--ink);font-family:'Segoe UI',Tahoma,system-ui,sans-serif;line-height:1.75;min-height:100vh}
+button{font-family:inherit;cursor:pointer}
+
+/* ===== الهيدر ===== */
+header{padding:34px 18px 26px;text-align:center;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;inset:-60px -120px;background:radial-gradient(circle at 70% 20%,#f0b42918,transparent 45%),radial-gradient(circle at 20% 80%,#25d36610,transparent 40%);pointer-events:none}
+.mark{width:92px;height:92px;margin:0 auto 12px;border-radius:26px;background:linear-gradient(150deg,#f7d774,#f0b429 55%,#c98f1b);display:flex;align-items:center;justify-content:center;font-size:3rem;box-shadow:0 10px 30px #f0b42933,inset 0 -6px 12px #00000033;position:relative}
+.brand{font-size:2rem;font-weight:900;letter-spacing:.5px;margin:0;color:#fdf6d8;text-shadow:0 2px 18px #f0b42930}
+.brand em{font-style:normal;color:var(--gold)}
+.tag{margin:6px 0 0;color:var(--muted);font-size:.9rem}
+.chips{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:14px}
+.chip{background:#f0b42914;border:1px solid #f0b42940;color:var(--gold-soft);border-radius:999px;font-size:.7rem;padding:5px 13px}
+.chip b{color:#fff}
+
+/* ===== شريط البحث والفلاتر ===== */
+.toolbar{position:sticky;top:0;z-index:40;background:#0b2a28ee;backdrop-filter:blur(10px);padding:10px 14px;border-bottom:1px solid var(--line)}
+.toolbar-in{max-width:1060px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+#searchBox{width:100%;background:#103a36;border:1.5px solid var(--line);color:var(--ink);border-radius:12px;padding:10px 16px;font-size:.95rem;outline:none}
+#searchBox:focus{border-color:var(--gold)}
+#searchBox::placeholder{color:#6f9a92}
+.filters{display:flex;gap:8px;overflow-x:auto;padding-bottom:2px}
+.fbtn{background:#103a36;border:1.5px solid var(--line);color:var(--muted);border-radius:999px;padding:7px 16px;font-size:.8rem;white-space:nowrap;transition:all .18s}
+.fbtn.on{background:var(--gold);border-color:var(--gold);color:#241a05;font-weight:800}
+
+/* ===== الشبكة والبطاقات ===== */
+main{max-width:1060px;margin:0 auto;padding:18px 14px 130px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.card{background:linear-gradient(165deg,#123f3a,#0f3833);border:1.5px solid var(--line);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;gap:8px;position:relative;transition:transform .18s,border-color .18s}
+.card:hover{transform:translateY(-3px);border-color:#f0b42955}
+.card.live{border-color:#25d36666;box-shadow:0 0 0 1px #25d36633 inset}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.emoji{width:56px;height:56px;border-radius:16px;background:#f0b4291f;display:flex;align-items:center;justify-content:center;font-size:1.7rem;border:1px solid #f0b42935}
+.live-badge{background:#25d36622;border:1px solid #25d36655;color:#7df0a8;font-size:.65rem;border-radius:999px;padding:3px 10px;font-weight:800;white-space:nowrap}
+.new-badge{background:#f0b4291f;border:1px solid #f0b42945;color:var(--gold-soft);font-size:.65rem;border-radius:999px;padding:3px 10px;font-weight:700;white-space:nowrap}
+h3{margin:2px 0;font-size:1.02rem;color:#fff8e0;line-height:1.5}
+.who{font-size:.72rem;color:var(--muted)}
+.feat{margin:4px 0 0;padding:0 0;list-style:none;font-size:.78rem;color:#cfe8e0}
+.feat li{padding:2px 0;display:flex;gap:6px}
+.feat li::before{content:'✓';color:var(--wa);font-weight:900}
+.price{margin-top:auto;display:flex;align-items:baseline;gap:8px;border-top:1px dashed var(--line);padding-top:8px}
+.price b{color:var(--gold);font-size:1.05rem}
+.price small{color:var(--muted);font-size:.68rem}
+.deliv{font-size:.7rem;color:#9fc4bc}
+.card-actions{display:flex;gap:8px;margin-top:6px}
+.pick-btn{flex:1;background:#f0b4291a;border:1.5px solid #f0b42966;color:var(--gold-soft);border-radius:12px;padding:9px 8px;font-size:.82rem;font-weight:800;transition:all .15s}
+.pick-btn:hover{background:#f0b4292b}
+.pick-btn.on{background:var(--wa);border-color:var(--wa);color:#053b1f}
+.demo-link{display:inline-flex;align-items:center;gap:6px;color:#8df0b4;font-size:.75rem;text-decoration:none;border:1px solid #25d36644;border-radius:12px;padding:9px 12px;transition:all .15s}
+.demo-link:hover{background:#25d3661a;color:#b8ffd4}
+.empty{text-align:center;color:var(--muted);padding:50px 10px;font-size:.95rem}
+
+/* ===== إثبات الديمو الحي ===== */
+.proof{display:flex;gap:14px;align-items:center;justify-content:center;flex-wrap:wrap;background:#0f3833;border:1.5px solid var(--line);border-radius:var(--radius);padding:14px;margin:4px 0 16px}
+.proof-item{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit}
+.proof-item img{width:84px;height:84px;border-radius:12px;background:#fff;padding:3px}
+.proof-item small{display:block;color:var(--muted);font-size:.68rem}
+.proof-item b{color:#fff8e0;font-size:.85rem}
+
+/* ===== باقة أندرويد ===== */
+.android{max-width:1060px;margin:0 auto 8px;padding:0 14px}
+.android-box{background:linear-gradient(120deg,#1b4a24,#123f3a 60%);border:1.5px solid #25d36655;border-radius:var(--radius);padding:16px;display:flex;gap:14px;align-items:center}
+.android-box .robot{font-size:2.6rem}
+.android-box p{margin:2px 0;font-size:.8rem;color:#b8e6c9}
+.android-box b{color:#8df0b4}
+.android-box .price b{color:#f0b429}
+@media(max-width:640px){.android-box{flex-direction:column;text-align:center}}
+
+/* ===== شريط الطلبات ===== */
+.cart-bar{position:fixed;bottom:0;left:0;right:0;z-index:50;background:#081f1df2;backdrop-filter:blur(12px);border-top:1.5px solid #f0b42944;padding:10px 14px calc(10px + env(safe-area-inset-bottom))}
+.cart-in{max-width:1060px;margin:0 auto;display:flex;gap:10px;align-items:center}
+.cart-info{flex:1;min-width:0}
+.cart-info b{color:var(--gold);font-size:.9rem;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cart-info small{color:var(--muted);font-size:.68rem}
+#orderBtn{background:var(--wa);color:#053b1f;border:none;border-radius:999px;padding:13px 22px;font-size:.92rem;font-weight:900;box-shadow:0 6px 18px #25d36644;white-space:nowrap}
+#orderBtn:disabled{opacity:.4;box-shadow:none}
+#clearBtn{background:transparent;border:1.5px solid var(--line);color:var(--muted);border-radius:12px;padding:11px 13px;font-size:.8rem}
+
+/* ===== نافذة الإرسال ===== */
+.modal{position:fixed;inset:0;z-index:80;background:#000a;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.modal.open{opacity:1;pointer-events:auto}
+.sheet{background:#103a36;border:1.5px solid var(--line);border-radius:24px 24px 0 0;width:100%;max-width:560px;max-height:88vh;overflow-y:auto;padding:20px 18px calc(24px + env(safe-area-inset-bottom));transform:translateY(30px);transition:transform .25s}
+.modal.open .sheet{transform:translateY(0)}
+.sheet h2{margin:0 0 2px;font-size:1.15rem;color:var(--gold)}
+.sheet .hint{color:var(--muted);font-size:.75rem;margin:2px 0 12px}
+.chosen{background:#0b2a28;border:1px dashed var(--line);border-radius:14px;padding:10px 12px;font-size:.82rem;color:#d9efe8;margin-bottom:12px;max-height:120px;overflow-y:auto}
+.chosen li{margin:2px 0}
+.f-group{margin-bottom:10px}
+.f-group label{display:block;font-size:.75rem;color:var(--gold-soft);margin-bottom:4px}
+.f-group input,.f-group textarea{width:100%;background:#0b2a28;border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;color:var(--ink);font-size:.95rem;outline:none}
+.f-group input:focus,.f-group textarea:focus{border-color:var(--gold)}
+.sheet-actions{display:flex;gap:10px;margin-top:12px}
+#sendBtn{flex:2;background:var(--wa);border:none;color:#053b1f;border-radius:14px;padding:14px;font-size:1rem;font-weight:900}
+#cancelBtn{flex:1;background:transparent;border:1.5px solid var(--line);color:var(--muted);border-radius:14px;padding:14px;font-size:.9rem}
+
+.toast{position:fixed;bottom:120px;left:50%;transform:translate(-50%,12px);background:#f0b429;color:#241a05;font-weight:800;border-radius:999px;padding:10px 22px;font-size:.85rem;opacity:0;pointer-events:none;transition:all .25s;z-index:90}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ===== الفوتر ===== */
+footer{border-top:1px solid var(--line);padding:20px 14px 40px;text-align:center;color:var(--muted);font-size:.75rem}
+footer a{color:var(--gold-soft)}
+footer b{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="mark" aria-hidden="true">✨</div>
+  <h1 class="brand">نور <em>كلكشن</em></h1>
+  <p class="tag">الحلول الرقمية الجاهزة لأعمال إب — تختار، وننفذها خلال أيام</p>
+  <div class="chips">
+    <span class="chip"><b>٢</b> منتج حي الآن — جرّب الديمو</span>
+    <span class="chip">تسليم من ساعة إلى ٧ أيام</span>
+    <span class="chip">بدون سيرفر — وبدون إنترنت معقّد</span>
+    <span class="chip">الدفع عند الاستلام</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-in">
+    <input id="searchBox" type="search" placeholder="🔍 ابحث عن حل… (مثال: منيو، حجز، دعوة، عقار)" aria-label="ابحث في الكتالوج">
+    <div class="filters" id="filterRow" role="group" aria-label="التصنيفات"></div>
+  </div>
+</div>
+
+<main>
+
+  <div class="proof" aria-label="ديموهات حية">
+    <a class="proof-item" href="https://shibani-47cdd.web.app/" target="_blank" rel="noopener">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAc4AAAHOCAIAAACehH7nAAAI0ElEQVR4nO3cwY3jSBBFwdWi7Rhbx9ZxhGvClgA95GQp4twgRYn9UKf/ep7nHwBK/05/AID7SS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBcj/FRX//+lVc9jK///w5/cvj7/P8moUtn/Ob+d88UbyfTrUAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5BLlr3O3bfwVCwnbdnr2mL2N9ryhvjf/CynWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyA0ve52bXeWxcnR0zWDdanYx69x9+2fn/G+ecKoFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoDcmmWvb1bsYBUu3Osa/ZxbNqs44VQLkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5y15X2bKtNbuDdd9amA2wv59TLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5NYse9kuOvHN39LsDtaWXbHCN79155xqAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgN7zsdd/K0RbFDpZrTl2z4H/zs5xqAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYglyx7nW8X8VnFvtQbd1/yu2/Z1ips+Y3u41QLkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQC51/M8H7/o7L7UueJzzm5Bbdlt+ubFrPuevZAsz412yakWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyw8te97lv4al4oi0LZOe2PPuWt26WZS+AlaQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUAuWfY6V+wMzS5RzS482W068c27YrO2rJpZ9gJYSWoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSSZa8t61ZbFp627DYVik21wpY3+Zu39M5Z9gJYSWoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuR+pj/A581uLL1xzdFdsS2LWeeGt7Vmd8WWrNl9892dagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWIPd6nufjF92yBVXYsit2ny1bZcPrVt6lA8Vv5FQLkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQC5n+Kis+tWW5aT3liiGt2sKu4++xudG/7mR9+lwpb3s+BUC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAuWTZ69zs1s59O0Nb7v7GNZcspX3zNc/NviGznGoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiA3vewVLP3M2rKxdG7LE21ZeDo3/Lvf9785+kROtQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkEuWvbZsQRXue6Jzxe++xZZn3/LWFd/S7G/kVAuQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ALnX8zzTn+FIsUi0ZYVryxbUfd/n7BbUlnd+ywqXZS+Ay0ktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoDcmmWvWVvWre67+5a1sFlbvqX79s/OOdUC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUAuWfbasrF03w7W7N1nr1mwQDZldgPMshfASlILkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiCXLHvxWbPLXm9cc3Szyq7YFJ/zhFMtQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkfoqLzi48bTG7cjRry7MXW1DD+2ej61ZbNuoKTrUAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5BLlr3ObVnlOTe7XfTGbtPowtO5ZFtrdIVry90Ls2ths8/uVAuQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ALnhZa9zxcrRG3dfsm41e/fhzaolC0+zzz5r9jeavbtTLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5NYse32z2cWsc8lm1ewK1+jdz235nLNmvyWnWoCc1ALkpBYgJ7UAOakFyEktQE5qAXJSC5CTWoCc1ALkpBYgJ7UAOakFyFn24n8Ue0jJBtjxNYultORbWvI5z21Zniu+JadagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQA5qQXIrVn2ml0kus8373VtseXZk989WDWb5VQLkJNagJzUAuSkFiAntQA5qQXISS1ATmoBclILkJNagJzUAuSkFiAntQC54WWvLas8s4qFp9nVqORzzj7R6Ju8ZgPsi+/uVAuQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ALnX8zzTnwHgck61ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUBOagFyUguQk1qAnNQC5KQWICe1ADmpBchJLUDuP5FALT+74+vUAAAAAElFTkSuQmCC" alt="QR — ديمو المنيو"><span><small>ديمو حي — افتح وامسح</small><b>🍽️ المنيو الرقمي</b></span>
+    </a>
+    <a class="proof-item" href="https://shibani-47cdd.web.app/booking/" target="_blank" rel="noopener">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUoAAAFKAQMAAABB54RGAAAABlBMVEUIPzz////QBnX+AAABmElEQVR42u2by43DMAxEibgAleTWU5IKMMC1+BOTvSTALjCH0SFwZJ7yQHI4UkQ/XU9hKEMZ+lXolFjnPO6dca3nw9/nq/XiIR8vhv5P6KKVZE69ApneTzfJY+2tNUkLiJZlj5ExWs7N92YlHX8sLFoJKvaGkhY2rV/wSAu1b5neGNWo2LcQaXVN+P5BTQhGa6/KqC3om9jnjwVTCTOPTLzf5dAU/EsIaUH1LRuMk1EKelZCvEpoyeRfn8O4qUaWyUGVAde3ZoFyPCXtR7gapIWjCd10cudJpKValEiqDKTp2OffalmuCdm3QPvWmQ5GePBDdfu79DLA+lbJCheG+8lbFnMLSsH7TPwOin0LV2UYlH5Ykn2LuQVXCa9uNXk5TFXPvoWmMpqX8XIaKexbcJUwi2DMyfQJwb2MbWhUMpXdS1pgKsPHYc+ycgx5LwNUwbc7T5oCo6UVFTyU89TuZWgNXRVCWoi0ytrdSlB5LwOZlpSrUR6U0NVF7lthbdRJF+ctSE1YZyf7fIsqA3Xe4l88GMrQPwv9AWgTGHPyylnUAAAAAElFTkSuQmCC" alt="QR — ديمو الحجز"><span><small>ديمو حي — افتح وامسح</small><b>🦷 نظام حجز المواعيد</b></span>
+    </a>
+  </div>
+
+  <div class="grid" id="productGrid"></div>
+  <div class="empty" id="emptyState" hidden>ما لقينا شي بهذا الاسم — جرب كلمة ثانية أو اختر تصنيف آخر</div>
+
+</main>
+
+<section class="android" aria-label="باقة أندرويد">
+  <div class="android-box">
+    <div class="robot" aria-hidden="true">🤖</div>
+    <div>
+      <b>أضف تطبيق أندرويد لكل منتج — باقة «نبض أندرويد»</b>
+      <p>نفس منتجك يصبح تطبيقًا باسم مشروعك: أيقونة، شاشة بداية، رابط تنزيل APK على هاتف زبائنك — بنفس تقنية «مطاعم الشيباني ماستر» المجربة.</p>
+      <div class="price"><b>٢٥,٠٠٠ ر.ي</b><small>إضافي لكل منتج (بناء + توقيع + رابط تنزيل)</small></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>نور كلكشن — إب، الجمهورية اليمنية</b><br>
+  المهندس هيثم عادل · <a href="tel:777456253">777456253</a> · <a href="https://wa.me/967777456253">راسلنا واتساب</a><br>
+  <small>الأسعار استرشادية قابلة للتفاوض حسب حجم مشروعك · لا حاجة لدفع إلكتروني أو سيرفر · القائمة المختارة تُحفظ على جهازك وتُرسل عبر واتساب فقط</small>
+</footer>
+
+<div class="cart-bar">
+  <div class="cart-in">
+    <div class="cart-info">
+      <b id="cartTitle">قائمتي (0)</b>
+      <small id="cartHint">اختر اللي يعجبك — وبعدين اطلبه بضغطة</small>
+    </div>
+    <button id="clearBtn" type="button">إفراغ</button>
+    <button id="orderBtn" type="button" disabled>اطلب عبر واتساب ←</button>
+  </div>
+</div>
+
+<div class="modal" id="orderModal" role="dialog" aria-modal="true" aria-label="إرسال طلبك">
+  <div class="sheet">
+    <h2>أرسل طلبك لنور كلكشن</h2>
+    <p class="hint">نرد عليك خلال ساعات النهار بتفاصيل التنفيذ والسعر النهائي</p>
+    <ul class="chosen" id="chosenList"></ul>
+    <div class="f-group"><label for="buyerName">الاسم الكريم *</label><input id="buyerName" type="text" placeholder="مثال: أبو فهد" autocomplete="name"></div>
+    <div class="f-group"><label for="shopName">اسم المحل / المشروع</label><input id="shopName" type="text" placeholder="مثال: بوتيك اللمسة"></div>
+    <div class="f-group"><label for="buyerPhone">رقم التواصل</label><input id="buyerPhone" type="tel" dir="ltr" placeholder="7XX XXX XXX" autocomplete="tel"></div>
+    <div class="f-group"><label for="buyerNote">ملاحظة (اختياري)</label><textarea id="buyerNote" rows="2" placeholder="مثل: عندي كذا صنف / أبي ألوان معينة / موعد الاستلام"></textarea></div>
+    <div class="sheet-actions"><button id="cancelBtn" type="button">رجوع</button><button id="sendBtn" type="button">إرسال عبر واتساب ✓</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* =========================================================
+   الإعدادات — عدّل هنا فقط:
+   ========================================================= */
+const CONFIG = { whatsapp: '967777456253', phone: '967777456253', storeKey: 'nour-collection-pick' };
+
+const CATEGORIES = [
+  { id:'all',   label:'الكل' },
+  { id:'food',  label:'🍽️ مطاعم ومقاهي' },
+  { id:'health',label:'🦷 عيادات وحجوزات' },
+  { id:'retail',label:'👗 تجزئة ومتاجر' },
+  { id:'estate',label:'🏠 عقارات وسيارات' },
+  { id:'party', label:'💌 مناسبات وأفراح' },
+  { id:'biz',   label:'🏢 شركات وورش' }
+];
+
+const PRODUCTS = [
+  { id:'menu', cat:'food', emoji:'🍽️', live:true, name:'المنيو الرقمي الذكي + طلب واتساب',
+    who:'مطاعم · مندي · مشاوي · برجر · قهوة ومقاهي · مخابز',
+    feats:['٣–٦ أقسام، الأصناف برموز وصور وأسعار','سلة حقيقية + كود خصم (مثل SHIBANI5)','رسالة طلب جاهزة تصلك على واتساب المطعم','تطبيق أندرويد اختياري بنفس اسم مطبخك'],
+    price:'٢٥,٠٠٠ ر.ي', note:'تأسيس · عرض الإطلاق لأول ١٠ محلات — وصيانة ٤,٠٠٠/شهر (اختياري)', time:'تسليم خلال يوم واحد',
+    demo:'https://shibani-47cdd.web.app/' },
+
+  { id:'booking', cat:'health', emoji:'🦷', live:true, name:'نظام حجز مواعيد أونلاين',
+    who:'عيادات أسنان · جلدية · نساء وتوليد · صالونات · حلاقين · مراكز ليزر',
+    feats:['٨+ خدمات بأيقونات وأسعار يستعرضها المريض','تقويم ذكي بأيام وساعات العمل تلقائيًا','المريض يختار ويبعثلي واتساب — يصلك الطلب فورًا','مواعيده تُحفظ على جواله — وأنت لا تحتاج سيرفر'],
+    price:'ابتداءً من ١٥,٠٠٠ ر.ي', note:'تأسيس — والتصعيد لأنظمة متقدمة بالاتفاق · دعم ٥,٠٠٠/شهر (اختياري)', time:'تسليم خلال يوم واحد',
+    demo:'https://shibani-47cdd.web.app/booking/' },
+
+  { id:'retail', cat:'retail', emoji:'👗', name:'كتالوج متجر تجزئة ذكي',
+    who:'ملابس · عطور · إلكترونيات · مستلزمات أطفال · أحذية · مستحضرات تجميل',
+    feats:['ألبوم رقمي بالأقسام (جديد/عروض/الأكثر طلبًا)','كل قطعة بصورتها ووصفها ومقاسها وسعرها','السلة + «اطلب عبر واتساب» برسالة منسقة','بديل واتساب-الصور المنتشر — يطلعك محترف'],
+    price:'٢٠,٠٠٠ ر.ي', note:'تأسيس — وتحديث القوائم ٤,٠٠٠/شهر (اختياري)', time:'تسليم خلال يومين' },
+
+  { id:'estate', cat:'estate', emoji:'🏠', name:'صفحة هبوط: عقار / سيارة / أرض',
+    who:'سماسرة · مكاتب عقارية · معارض سيارات · ملاك يبيعون بيتهم',
+    feats:['صفحة واحدة بصور المعرض + المواصفات كاملة','زر «اتصل الآن» + «راسل واتساب» + موقع الخريطة','بدون دفع — العميل يدفع بعد بيع الصفقة','باقة سماسرة: ٥ صفحات بخصم'],
+    price:'٨,٠٠٠ ر.ي', note:'للصفحة الواحدة — وباقة ٥ صفحات بـ ٣٠,٠٠٠ ر.ي', time:'تسليم خلال ساعات' },
+
+  { id:'card', cat:'biz', emoji:'💳', name:'بطاقة تعريف رقمية QR + vCard',
+    who:'أطباء · محامون · مهندسون · تجار · مسوقون · أي شخص يبغى كرت محترم',
+    feats:['امسح الـQR واحفظ جهة الاتصال فورًا (vCard)','بياناتك: الاسم + التخصص + الهاتف + واتساب + الموقع + خرائط','تصميم بهوية قريبة من تخصصك','مثالية للتوقيع على بطاقاتك الورقية والإيميلات'],
+    price:'٤,٠٠٠ ر.ي', note:'للبطاقة الواحدة — تخصيص كامل بلونك وخطك', time:'تسليم خلال ساعة واحدة' },
+
+  { id:'invite', cat:'party', emoji:'💌', name:'دعوات زفاف وافتتاح إلكترونية',
+    who:'أفراح · خطوبة · تخرج · افتتاح فرع · تكريم · شعائر ومواليد',
+    feats:['دعوة فاخرة برابط واحد: الأسماء + المكان + الموعد','زر «سأحضر / اعتذر» عبر واتساب للعروسين أو صاحب المحل','موقع القاعة على الخريطة بزر واحد','تصميم عربي راقٍ بألوان المناسبة'],
+    price:'٦,٠٠٠ ر.ي', note:'للدعوة الواحدة — والتصاميم الخاصة بالتفاوض', time:'تسليم خلال ساعات' },
+
+  { id:'offer', cat:'food', emoji:'🔥', name:'صفحة «عرض اليوم / الجمعة»',
+    who:'مطاعم وكافيهات — للعروض الأسبوعية والافتتاحات والمواسم',
+    feats:['صفحة قمع سريعة: صورة العرض + السعر + عد تنازلي','زر طلب مباشر يفتح واتساب المطعم','مثالية للإعلانات الممولة والستوري والريلز','تصلح لعرض واحد أو سلسلة عروض موسمية'],
+    price:'٣,٠٠٠ ر.ي', note:'للعرض الواحد — وحزمة ٥ عروض بـ ١٢,٠٠٠ ر.ي', time:'تسليم خلال ساعة واحدة' },
+
+  { id:'company', cat:'biz', emoji:'🏢', name:'موقع تعريفي للشركات والمنظمات',
+    who:'مقاولون · مقاولات · شركات توريد · مؤسسات · مراكز طبية وتجارية',
+    feats:['٥ صفحات: من نحن · خدماتنا · أعمالنا · عملاء · اتصل بنا','تصميم بهوية شركتك + نموذج «اطلب عرض سعر»','ربط خرائط جوجل + زر واتساب عائم','ظهور باسمك في البحث عبر ربط Google Business'],
+    price:'٦٠,٠٠٠ ر.ي', note:'للموقع الكامل — والدفع على مرحلتين (نصف الآن ونصف عند التسليم)', time:'تسليم خلال ٥–٧ أيام' },
+
+  { id:'workshop', cat:'biz', emoji:'🔧', name:'صفحة الورشة والمشغل الخدمي',
+    who:'سباكة · كهرباء · تكييف · نجارة · حدادة · دهان · شدات جصية',
+    feats:['قائمة خدماتك وأسعارها بالتفصيل','أرقام اتصال مباشر + واتساب + موقعك على الخريطة','صورتك ورخصتك وشهاداتك إن وجدت','«اطلب الخدمة» — الزبون يبعث طلبه وهو في بيته'],
+    price:'١٠,٠٠٠ ر.ي', note:'تأسيس — يشمل صفحة Google Business معك', time:'تسليم خلال يوم واحد' },
+
+  { id:'b2b', cat:'retail', emoji:'🚛', name:'كشك طلبات الجملة للمطاعم والمستودعات',
+    who:'تموينات · مستودعات · موردين أغذية · مطاعم تطلب من مستودع',
+    feats:['قائمة سلع بالجملة مع الأسعار والوحدات','سلة الجملة + رسالة واتساب مفصلة بالأصناف والكميات','يخفي عليك الزبائن اللي يطلبون بالتلفون كثير','بديل الدفتر التقليدي — ولا مكان للخطأ في الطلبية'],
+    price:'٢٥,٠٠٠ ر.ي', note:'تأسيس — وصيانة ٣,٠٠٠/شهر (اختياري)', time:'تسليم خلال يومين' }
+];
+
+/* ============ الحالة ============ */
+const $ = id => document.getElementById(id);
+let activeCat = 'all';
+let chosen = [];
+try { chosen = JSON.parse(localStorage.getItem(CONFIG.storeKey) || '[]').filter(id => PRODUCTS.some(p => p.id === id)); } catch (e) { chosen = []; }
+
+/* ============ الفلاتر ============ */
+$('filterRow').innerHTML = CATEGORIES.map(c =>
+  `<button class="fbtn${c.id === 'all' ? ' on' : ''}" data-cat="${c.id}" type="button">${c.label}</button>`).join('');
+$('filterRow').addEventListener('click', e => {
+  const b = e.target.closest('.fbtn'); if (!b) return;
+  activeCat = b.dataset.cat;
+  [...$('filterRow').children].forEach(el => el.classList.toggle('on', el === b));
+  renderGrid();
+});
+
+$('searchBox').addEventListener('input', renderGrid);
+
+/* ============ الشبكة ============ */
+function visibleProducts(){
+  const q = ($('searchBox').value || '').trim().toLowerCase();
+  return PRODUCTS.filter(p => (activeCat === 'all' || p.cat === activeCat) &&
+    (!q || [p.name, p.who, p.feats.join(' ')].join(' ').toLowerCase().includes(q)));
+}
+function renderGrid(){
+  const list = visibleProducts();
+  $('emptyState').hidden = list.length !== 0;
+  $('productGrid').innerHTML = list.map(p => `
+    <article class="card${p.live ? ' live' : ''}" data-id="${p.id}">
+      <div class="card-top">
+        <div class="emoji" aria-hidden="true">${p.emoji}</div>
+        ${p.live ? '<span class="live-badge">LIVE · شغال الآن</span>' : '<span class="new-badge">جاهز للتنفيذ</span>'}
+      </div>
+      <h3>${p.name}</h3>
+      <div class="who">لمن يصلح: ${p.who}</div>
+      <ul class="feat">${p.feats.map(f => `<li>${f}</li>`).join('')}</ul>
+      <div class="price"><b>${p.price}</b><small>${p.note}</small></div>
+      <div class="deliv">⏱️ ${p.time}</div>
+      <div class="card-actions">
+        <button class="pick-btn${chosen.includes(p.id) ? ' on' : ''}" data-id="${p.id}" type="button" aria-pressed="${chosen.includes(p.id)}">${chosen.includes(p.id) ? '✓ في قائمتي' : '＋ أضف لقائمتي'}</button>
+        ${p.demo ? `<a class="demo-link" href="${p.demo}" target="_blank" rel="noopener">جرب الديمو ↗</a>` : ''}
+      </div>
+    </article>`).join('');
+}
+$('productGrid').addEventListener('click', e => {
+  const b = e.target.closest('.pick-btn'); if (!b) return;
+  const id = b.dataset.id;
+  chosen = chosen.includes(id) ? chosen.filter(x => x !== id) : [...chosen, id];
+  localStorage.setItem(CONFIG.storeKey, JSON.stringify(chosen));
+  renderGrid(); refreshCart();
+  showToast(chosen.includes(id) ? 'أُضيف لقائمتك ✅' : 'أُزيل من قائمتك');
+});
+
+/* ============ السلة ============ */
+function refreshCart(){
+  const items = PRODUCTS.filter(p => chosen.includes(p.id));
+  $('cartTitle').textContent = `قائمتي (${items.length})`;
+  $('cartHint').textContent = items.length ? items.map(p => p.name).join(' · ') : 'اختر اللي يعجبك — وبعدين اطلبه بضغطة';
+  $('orderBtn').disabled = items.length === 0;
+}
+$('clearBtn').addEventListener('click', () => {
+  if (!chosen.length) return;
+  chosen = []; localStorage.setItem(CONFIG.storeKey, '[]');
+  renderGrid(); refreshCart(); showToast('أُفرغت قائمتك');
+});
+
+/* ============ نافذة الإرسال ============ */
+function openModal(){
+  const items = PRODUCTS.filter(p => chosen.includes(p.id));
+  $('chosenList').innerHTML = items.map(p => `<li>${p.emoji} ${p.name} — <b style="color:var(--gold)">${p.price}</b></li>`).join('');
+  $('orderModal').classList.add('open');
+  setTimeout(() => $('buyerName').focus(), 250);
+}
+function closeModal(){ $('orderModal').classList.remove('open'); }
+$('orderBtn').addEventListener('click', openModal);
+$('cancelBtn').addEventListener('click', closeModal);
+$('orderModal').addEventListener('click', e => { if (e.target === $('orderModal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+function showToast(msg){
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._tm); t._tm = setTimeout(() => t.classList.remove('show'), 2400);
+}
+
+$('sendBtn').addEventListener('click', () => {
+  const name = $('buyerName').value.trim();
+  if (!name) { showToast('اكتب اسمك الكريم أولًا'); $('buyerName').focus(); return; }
+  const items = PRODUCTS.filter(p => chosen.includes(p.id));
+  const shop = $('shopName').value.trim();
+  const phone = $('buyerPhone').value.trim();
+  const note = $('buyerNote').value.trim();
+  let msg = '✨ طلب جديد من كتالوج «نور كلكشن»\n';
+  msg += 'الاسم: ' + name + (shop ? ' — ' + shop : '') + (phone ? ' — ' + phone : '') + '\n';
+  msg += 'المنتجات المطلوبة (' + items.length + '):\n';
+  items.forEach((p, i) => { msg += (i + 1) + ') ' + p.name + ' — ' + p.price + '\n'; });
+  if (note) msg += 'ملاحظة: ' + note + '\n';
+  msg += '\nبانتظار ردكم وتفاصيل التنفيذ ✅';
+  window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  showToast('فُتح واتساب — أرسل الرسالة لتأكيد الطلب ✓');
+});
+
+renderGrid(); refreshCart();
+</script>
+</body>
+</html>
