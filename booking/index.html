@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>احجز موعدك — عيادة د. رنا للأسنان | التربة</title>
+<meta name="description" content="احجز موعدك في عيادة دكتورة رنا للأسنان — التربة، تعز. اختر الخدمة واليوم والساعة، ووصل طلبك على واتساب العيادة مباشرة.">
+<meta name="theme-color" content="#0f766e">
+<style>
+:root{
+  --primary:#0f766e; --primary-dark:#115e59; --accent:#f59e0b; --bg:#f4faf9; --card:#ffffff;
+  --ink:#134e4a; --muted:#5f7a77; --line:#d8ecea; --radius:16px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Segoe UI',Tahoma,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7;padding-bottom:90px}
+button{font-family:inherit}
+
+/* ===== الترويسة ===== */
+header{background:linear-gradient(160deg,#083f3c,#0f766e 60%,#14b8a6);color:#f0fdfa;padding:22px 18px 30px;text-align:center;border-radius:0 0 28px 28px;box-shadow:0 8px 24px rgba(8,63,60,.35)}
+.logo{width:84px;height:84px;border-radius:26px;background:#f0fdfa;display:flex;align-items:center;justify-content:center;font-size:2.6rem;margin:0 auto 10px;box-shadow:0 6px 16px rgba(0,0,0,.25)}
+h1{margin:4px 0;font-size:1.45rem;color:#fefce8}
+.sub{margin:0;font-size:.85rem;color:#99f6e4}
+.trust{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.trust span{background:#ffffff22;border:1px solid #99f6e455;border-radius:999px;font-size:.68rem;padding:4px 12px;color:#ccfbf1}
+.h-actions{position:absolute;top:12px;left:12px;display:flex;gap:6px}
+.h-btn{background:#ffffff2b;color:#f0fdfa;border:none;border-radius:999px;font-size:.78rem;padding:7px 14px;text-decoration:none;cursor:pointer}
+header{position:relative}
+
+/* ===== الأقسام ===== */
+.wrap{max-width:640px;margin:0 auto;padding:0 14px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin:14px auto;box-shadow:0 2px 10px rgba(15,118,110,.06)}
+.step-title{display:flex;align-items:center;gap:10px;margin:0 0 4px;font-size:1.05rem;color:var(--primary-dark)}
+.step-num{background:var(--primary);color:#fff;width:28px;height:28px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800}
+.step-hint{font-size:.75rem;color:var(--muted);margin:2px 0 12px}
+
+/* ===== الخدمات ===== */
+.services{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media(max-width:560px){.services{grid-template-columns:1fr}}
+.svc{background:#f8fdfc;border:1.5px solid var(--line);border-radius:14px;padding:10px 12px;cursor:pointer;text-align:right;transition:all .15s}
+.svc .ico{font-size:1.3rem}
+.svc b{display:block;font-size:.88rem;color:var(--primary-dark)}
+.svc small{display:flex;justify-content:space-between;color:var(--muted);font-size:.72rem;margin-top:2px}
+.svc small em{font-style:normal;font-weight:800;color:#0f766e}
+.svc.on{border-color:var(--primary);background:#e6fffa;box-shadow:0 0 0 3px #0f766e22 inset}
+
+/* ===== التاريخ والوقت ===== */
+.days{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scroll-snap-type:x mandatory}
+.day{min-width:74px;scroll-snap-align:start;background:#f8fdfc;border:1.5px solid var(--line);border-radius:14px;padding:8px 6px;text-align:center;cursor:pointer;flex:0 0 auto}
+.day b{display:block;font-size:1.15rem}
+.day small{display:block;font-size:.68rem;color:var(--muted)}
+.day.on{background:var(--primary);border-color:var(--primary);color:#fff}
+.day.on small{color:#ccfbf1}
+.times{display:flex;gap:8px;flex-wrap:wrap}
+.time{background:#f8fdfc;border:1.5px solid var(--line);border-radius:999px;padding:8px 16px;cursor:pointer;font-size:.88rem;color:var(--primary-dark)}
+.time.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+.times-note{font-size:.72rem;color:var(--muted);margin-top:8px}
+
+/* ===== بيانات المريض ===== */
+.field{margin-top:10px}
+.field label{display:block;font-size:.78rem;color:var(--muted);margin-bottom:4px}
+.field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;font-family:inherit;font-size:.95rem;outline:none;background:#f8fdfc}
+.field input:focus,.field textarea:focus{border-color:var(--primary)}
+.field textarea{resize:vertical;min-height:56px}
+
+/* ===== زر التأكيد ===== */
+.confirm-bar{position:fixed;bottom:0;left:0;right:0;z-index:50;background:#ffffffdd;backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:10px 14px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px}
+.summary{flex:1;min-width:0}
+.summary b{display:block;font-size:.82rem;color:var(--primary-dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.summary small{font-size:.68rem;color:var(--muted)}
+#confirmBtn{background:var(--primary);color:#fff;border:none;border-radius:999px;padding:13px 26px;font-size:.95rem;font-weight:800;cursor:pointer;box-shadow:0 6px 16px rgba(15,118,110,.35);white-space:nowrap}
+#confirmBtn:disabled{opacity:.45;box-shadow:none}
+
+/* ===== نجاح والطلبات ===== */
+.toast{position:fixed;bottom:110px;left:50%;transform:translate(-50%,14px);background:#083f3c;color:#f0fdfa;border-radius:999px;padding:10px 22px;font-size:.85rem;opacity:0;pointer-events:none;transition:all .25s;z-index:60;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.appts{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:14px;margin:14px auto;font-size:.85rem}
+.appt{display:flex;justify-content:space-between;gap:8px;border-bottom:1px dotted var(--line);padding:8px 0;font-size:.78rem;color:var(--muted)}
+.appt:last-child{border:none}
+.empty{color:var(--muted);font-size:.8rem;text-align:center;padding:8px}
+
+/* ===== معلومات و FAQ ===== */
+.info-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chip{display:inline-flex;align-items:center;gap:6px;background:#f0fdfa;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.75rem;color:var(--primary-dark);text-decoration:none}
+details{border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-top:8px;background:#f8fdfc}
+summary{cursor:pointer;font-weight:700;font-size:.88rem;color:var(--primary-dark)}
+details p{font-size:.82rem;color:var(--muted);margin:8px 0 0}
+
+footer{text-align:center;color:var(--muted);font-size:.72rem;padding:18px 14px}
+footer b{color:var(--primary-dark)}
+footer a{color:var(--primary)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-actions">
+    <a class="h-btn" href="tel:777456253" aria-label="اتصل بالعيادة">📞 اتصل</a>
+    <button class="h-btn" id="shareBtn" type="button">🔗 شارك</button>
+  </div>
+  <div class="logo">🦷</div>
+  <h1>عيادة د. رنا للأسنان</h1>
+  <p class="sub">د. رنا علي — طب وجراحة الفم والأسنان • التربة — شارع الحوطة</p>
+  <div class="trust">
+    <span>✔ خبرة +١٠ سنوات</span><span>✔ تعقيم كامل</span><span>✔ دفع عند الاستلام</span><span>✔ متابعة ما بعد العلاج</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- الخدمات -->
+  <section class="step" aria-label="اختر الخدمة">
+    <h2 class="step-title"><span class="step-num">1</span> اختر الخدمة</h2>
+    <p class="step-hint">الأسعار تقريبية — تُؤكد في الكشف الأول</p>
+    <div class="services" id="svcGrid"></div>
+  </section>
+
+  <!-- التاريخ -->
+  <section class="step" aria-label="اختر اليوم">
+    <h2 class="step-title"><span class="step-num">2</span> اختر اليوم</h2>
+    <p class="step-hint">السبت إلى الخميس • ٩:٠٠–١:٠٠ ظهرًا و ٤:٠٠–٩:٠٠ مساءً</p>
+    <div class="days" id="dayRow"></div>
+  </section>
+
+  <!-- الوقت -->
+  <section class="step" aria-label="اختر الساعة">
+    <h2 class="step-title"><span class="step-num">3</span> اختر الساعة</h2>
+    <div class="times" id="timeGrid"></div>
+    <p class="times-note" id="timeNote"></p>
+  </section>
+
+  <!-- بياناتك -->
+  <section class="step" aria-label="بياناتك">
+    <h2 class="step-title"><span class="step-num">4</span> بياناتك</h2>
+    <div class="field">
+      <label for="pName">الاسم الكريم *</label>
+      <input id="pName" type="text" autocomplete="name" placeholder="مثال: أم فهد">
+    </div>
+    <div class="field">
+      <label for="pPhone">رقم الجوال (اختياري — لتذكيرك بالموعد)</label>
+      <input id="pPhone" type="tel" dir="ltr" autocomplete="tel" placeholder="7XX XXX XXX">
+    </div>
+    <div class="field">
+      <label for="pNote">ملاحظة للطبيبة (اختياري)</label>
+      <textarea id="pNote" placeholder="مثال: ألم في الضرس الخلفي منذ ٣ أيام"></textarea>
+    </div>
+  </section>
+
+  <!-- معلومات و أسئلة شائعة -->
+  <section class="step" aria-label="معلومات العيادة">
+    <h2 class="step-title">ℹ️ العيادة باختصار</h2>
+    <div class="info-row">
+      <a class="chip" href="https://maps.app.goo.gl/sVjpsbmtyN8QHqAA7" target="_blank" rel="noopener">📍 الموقع على الخريطة</a>
+      <a class="chip" href="tel:777456253">📞 777456253</a>
+      <a class="chip" href="https://wa.me/967777456253" target="_blank" rel="noopener">💬 راسلنا واتساب</a>
+    </div>
+    <details>
+      <summary>كم يستغرق الكشف؟</summary>
+      <p>الكشف الأولي حوالي ٢٠ دقيقة — تنظيف الأسنان ٣٠ دقيقة — والعلاجات حسب الحالة. الوقت الاحتياطي محسوب في الجدول فلا تنتظر أكثر من ١٠ دقائق.</p>
+    </details>
+    <details>
+      <summary>كيف يتم تأكيد موعدي؟</summary>
+      <p>فور إرسال طلبك تصلنا رسالتك على واتساب العيادة، ونرد عليك بتأكيد خلال دقائق بوقتك المحدد — وإن احتجنا تعديل الموعد نقترح عليك أقرب ساعة بديلة.</p>
+    </details>
+    <details>
+      <summary>هل يمكن إلغاء أو تعديل الموعد؟</summary>
+      <p>بالتأكيد — أرسل كلمة «إلغاء» أو «تعديل» على نفس رقم واتساب العيادة قبل موعدك بساعتين على الأقل وسنلغي موعدك مجانًا أو نعيد جدولته.</p>
+    </details>
+    <details>
+      <summary>ما طرق الدفع؟</summary>
+      <p>كاش عند الاستلام — وحاليًا نفاوض على الدفع البنكي والمحافظ الإلكترونية قريبًا. لا يوجد أي دفع داخل التطبيق.</p>
+    </details>
+  </section>
+
+  <!-- مواعيدي -->
+  <section class="step" aria-label="مواعيدي">
+    <h2 class="step-title">🧾 مواعيدي السابقة</h2>
+    <div class="appts" id="apptList"><div class="empty">لا توجد مواعيد محفوظة على هذا الجهاز بعد</div></div>
+  </section>
+
+</div>
+
+<footer>
+  عيادة د. رنا للأسنان — التربة، شارع الحوطة • مفتوح السبت–الخميس ٩–١ و ٤–٩<br>
+  <b>هذا النظام يُباع جاهزًا لكل عيادة وصالون في المدينة</b><br>
+  تصميم وتطوير: المهندس هيثم عادل — 777456253 · <a href="https://wa.me/967777456253?text=أريد نظام حجز المواعيد لعيادتي">اطلب هذا النظام لعيادتك</a>
+</footer>
+
+<!-- شريط التأكيد -->
+<div class="confirm-bar">
+  <div class="summary">
+    <b id="sumService">اختر الخدمة أولًا</b>
+    <small id="sumDetail">اختر اليوم والساعة</small>
+  </div>
+  <button id="confirmBtn" type="button" disabled>تأكيد الموعد ✓</button>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ============================================================
+   الإعدادات — عدّل هذا القسم فقط لعيادتك/صالونك:
+   ============================================================ */
+const CONFIG = {
+  business:   'عيادة د. رنا للأسنان',
+  doctor:     'د. رنا علي',
+  whatsapp:   '967777456253',
+  phone:      '967777456253',
+  slotMinutes: 30,                     // مدة الفترة الزمنية
+  morning:    ['09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30'],
+  evening:    ['16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30'],
+  workdays:   [6,0,1,2,3,4],           // السبت..الخميس (0=الأحد … 6=السبت)
+  services: [
+    { id:'exam',    ico:'🩺', name:'كشف وعلاج أولي',      price:1000,  popular:true  },
+    { id:'clean',   ico:'✨', name:'تنظيف وتلميع الأسنان', price:3000,  popular:true  },
+    { id:'filling', ico:'🦷', name:'حشو عادي',            price:5000,  popular:false },
+    { id:'root',    ico:'⚕️', name:'سحب عصب',             price:8000,  popular:false },
+    { id:'crown',   ico:'👑', name:'تركيب تاج/جسر',       price:15000, popular:false },
+    { id:'extract', ico:'🪥', name:'خلع ضرس',             price:4000,  popular:false },
+    { id:'whiten',  ico:'🌟', name:'تبييض الأسنان',       price:12000, popular:true  },
+    { id:'consult', ico:'💬', name:'استشارة سريعة',       price:500,   popular:false }
+  ]
+};
+const fmt = n => Number(n).toLocaleString('en-US') + ' ر.ي';
+const $ = id => document.getElementById(id);
+
+/* ============ الخدمات ============ */
+let chosenService = null;
+function renderServices(){
+  $('svcGrid').innerHTML = CONFIG.services.map(s => `
+    <button class="svc" data-id="${s.id}" type="button" aria-pressed="false">
+      <span class="ico">${s.ico}</span>
+      <b>${s.name}${s.popular ? ' 🔥' : ''}</b>
+      <small><em>${fmt(s.price)}</em><span>${Math.floor(30)} دقيقة</span></small>
+    </button>`).join('');
+}
+$('svcGrid').addEventListener('click', e => {
+  const btn = e.target.closest('.svc'); if (!btn) return;
+  chosenService = CONFIG.services.find(s => s.id === btn.dataset.id);
+  [...$('svcGrid').children].forEach(el => { el.classList.toggle('on', el === btn); el.setAttribute('aria-pressed', el === btn ? 'true' : 'false'); });
+  refreshSummary();
+});
+
+/* ============ الأيام ============ */
+const AR_DAYS = ['الأحد','الاثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+const AR_MONTHS = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const days = [];
+const now = new Date();
+for (let i = 0; i < 30 && days.length < 14; i++) {
+  const d = new Date(now); d.setDate(now.getDate() + i);
+  if (!CONFIG.workdays.includes(d.getDay())) continue;
+  days.push(d);
+}
+let chosenDay = null;
+function renderDays(){
+  $('dayRow').innerHTML = days.map((d, i) => `
+    <button class="day" data-i="${i}" type="button">
+      <small>${AR_DAYS[d.getDay()]}</small>
+      <b>${d.getDate()}</b>
+      <small>${AR_MONTHS[d.getMonth()]}</small>
+    </button>`).join('');
+}
+$('dayRow').addEventListener('click', e => {
+  const btn = e.target.closest('.day'); if (!btn) return;
+  chosenDay = days[Number(btn.dataset.i)];
+  [...$('dayRow').children].forEach(el => el.classList.toggle('on', el === btn));
+  renderTimes(); refreshSummary();
+});
+
+/* ============ الأوقات ============ */
+let chosenTime = null;
+function renderTimes(){
+  chosenTime = null;
+  $('timeGrid').innerHTML = [...CONFIG.morning, ...CONFIG.evening].map(t =>
+    `<button class="time" data-t="${t}" type="button">${t}</button>`).join('');
+  $('timeNote').textContent = 'صباحًا (٩–١) • مساءً (٤–٩) — قد يختلف الوقت قليلًا حسب حالة المرضى';
+}
+$('timeGrid').addEventListener('click', e => {
+  const btn = e.target.closest('.time'); if (!btn) return;
+  chosenTime = btn.dataset.t;
+  [...$('timeGrid').children].forEach(el => el.classList.toggle('on', el === btn));
+  refreshSummary();
+});
+
+/* ============ الملخص + التأكيد ============ */
+function refreshSummary(){
+  $('sumService').textContent = chosenService ? (chosenService.ico + ' ' + chosenService.name) : 'اختر الخدمة أولًا';
+  const dateStr = chosenDay ? `${chosenDay.getDate()} ${AR_MONTHS[chosenDay.getMonth()]} — ${AR_DAYS[chosenDay.getDay()]}` : '';
+  $('sumDetail').textContent = (dateStr ? dateStr + (chosenTime ? ' • ' + chosenTime : ' • اختر الساعة') : 'اختر اليوم والساعة');
+  $('confirmBtn').disabled = !(chosenService && chosenDay && chosenTime);
+}
+refreshSummary();
+
+function showToast(msg){
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+function getAppts(){ try { return JSON.parse(localStorage.getItem('shibani-appts') || '[]'); } catch(e) { return []; } }
+function saveAppt(a){ localStorage.setItem('shibani-appts', JSON.stringify([a, ...getAppts()].slice(0, 10))); }
+function renderAppts(){
+  const list = getAppts();
+  $('apptList').innerHTML = list.length
+    ? list.map(a => `<div class="appt"><span>${a.serviceIco} <b style="color:var(--primary-dark)">${a.service}</b><br>${a.dateStr} • ${a.time}</span><span style="font-size:.72rem">${a.confirmed ? '✅ أُرسل للعيادة' : '⏳'}</span></div>`).join('')
+    : '<div class="empty">لا توجد مواعيد محفوظة على هذا الجهاز بعد</div>';
+}
+
+$('confirmBtn').addEventListener('click', () => {
+  const name = $('pName').value.trim();
+  if (!name) { showToast('اكتب اسمك الكريم أولًا'); $('pName').focus(); return; }
+  const dateStr = `${chosenDay.getDate()} ${AR_MONTHS[chosenDay.getMonth()]} ${chosenDay.getFullYear()} — ${AR_DAYS[chosenDay.getDay()]}`;
+  const phone = $('pPhone').value.trim();
+  const note = $('pNote').value.trim();
+  let msg = '🦷 طلب موعد جديد من ' + CONFIG.business + '\n';
+  msg += 'المريض: ' + name + (phone ? ' — ' + phone : '') + '\n';
+  msg += 'الخدمة: ' + chosenService.name + ' (' + fmt(chosenService.price) + ')\n';
+  msg += 'الموعد المطلوب: ' + dateStr + ' — الساعة ' + chosenTime + '\n';
+  if (note) msg += 'ملاحظة: ' + note + '\n';
+  msg += '\nأُرسل عبر نظام الحجز الإلكتروني — بانتظار تأكيدكم ✅';
+  saveAppt({ service: chosenService.name, serviceIco: chosenService.ico, dateStr, time: chosenTime, confirmed: true, t: Date.now() });
+  renderAppts();
+  window.open('https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+  showToast('✅ وصل طلبك — ستؤكد لك العيادة خلال دقائق');
+});
+
+/* ============ مشاركة ============ */
+const SHARE_URL = 'https://shibani-47cdd.web.app/booking/';
+document.getElementById('shareBtn').addEventListener('click', async () => {
+  const data = { title: CONFIG.business, text: 'احجز موعدك في ' + CONFIG.business + ' أونلاين عبر واتساب 🦷', url: SHARE_URL };
+  try { await navigator.share(data); }
+  catch (e) {
+    try { await navigator.clipboard.writeText(SHARE_URL); showToast('📋 نُسخ الرابط'); }
+    catch (e2) { showToast('انسخ الرابط من المتصفح'); }
+  }
+});
+
+renderServices(); renderDays(); renderTimes(); renderAppts();
+</script>
+</body>
+</html>
